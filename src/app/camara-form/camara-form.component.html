@@ -1,0 +1,267 @@
+<div class="container">
+  <h2>{{ isEditMode ? "Editar Cámara" : "Registrar Nueva Cámara" }}</h2>
+
+  <form (ngSubmit)="saveCamara()">
+    <div class="form-group">
+      <label for="id_cliente_sistema">Cliente Sistema:</label>
+      <select
+        id="id_cliente_sistema"
+        name="id_cliente_sistema"
+        [(ngModel)]="camara.id_cliente_sistema"
+        required
+      >
+        <option [value]="0" disabled>Seleccione un cliente</option>
+        <option
+          *ngFor="let cliente of clientesSistema"
+          [value]="cliente.id_cliente_sistema"
+        >
+          {{ cliente.nombre }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="alias_camara">Alias Cámara:</label>
+      <input
+        type="text"
+        id="alias_camara"
+        name="alias_camara"
+        [(ngModel)]="camara.alias_camara"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="codigo_camara">Código Cámara:</label>
+      <input
+        type="text"
+        id="codigo_camara"
+        name="codigo_camara"
+        [(ngModel)]="camara.codigo_camara"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="direccion">Dirección:</label>
+      <input
+        type="text"
+        id="direccion"
+        name="direccion"
+        [(ngModel)]="camara.direccion"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="maximocarril">Máximo Carril:</label>
+      <input
+        type="number"
+        id="maximocarril"
+        name="maximocarril"
+        [(ngModel)]="camara.maximocarril"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="fecha_calibracion">Fecha Calibración:</label>
+      <input
+        type="date"
+        id="fecha_calibracion"
+        name="fecha_calibracion"
+        [(ngModel)]="camara.fecha_calibracion"
+        (change)="onDateChange($event, 'fecha_calibracion')"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="serial_camara">Serial Cámara:</label>
+      <input
+        type="text"
+        id="serial_camara"
+        name="serial_camara"
+        [(ngModel)]="camara.serial_camara"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="activo">Activo (S/N):</label>
+      <input
+        type="text"
+        id="activo"
+        name="activo"
+        [(ngModel)]="camara.activo"
+        maxlength="1"
+        placeholder="S o N"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="id_tipo_proveedor_camara">ID Tipo Proveedor:</label>
+      <input
+        type="number"
+        id="id_tipo_proveedor_camara"
+        name="id_tipo_proveedor_camara"
+        [(ngModel)]="camara.id_tipo_proveedor_camara"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="id_tipo_camara">ID Tipo Cámara:</label>
+      <input
+        type="number"
+        id="id_tipo_camara"
+        name="id_tipo_camara"
+        [(ngModel)]="camara.id_tipo_camara"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="id_tipo_tecnologia">ID Tipo Tecnología:</label>
+      <input
+        type="number"
+        id="id_tipo_tecnologia"
+        name="id_tipo_tecnologia"
+        [(ngModel)]="camara.id_tipo_tecnologia"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="index_code_proveedor">Index Code Proveedor:</label>
+      <input
+        type="text"
+        id="index_code_proveedor"
+        name="index_code_proveedor"
+        [(ngModel)]="camara.index_code_proveedor"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="codigo_equipo">Código Equipo:</label>
+      <input
+        type="text"
+        id="codigo_equipo"
+        name="codigo_equipo"
+        [(ngModel)]="camara.codigo_equipo"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="id_usuario_registra">ID Usuario Registra:</label>
+      <input
+        type="number"
+        id="id_usuario_registra"
+        name="id_usuario_registra"
+        [(ngModel)]="camara.id_usuario_registra"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="id_usuario_modifica">ID Usuario Modifica:</label>
+      <input
+        type="number"
+        id="id_usuario_modifica"
+        name="id_usuario_modifica"
+        [(ngModel)]="camara.id_usuario_modifica"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="id_tipo_fuente_evidencia">ID Tipo Fuente Evidencia:</label>
+      <input
+        type="number"
+        id="id_tipo_fuente_evidencia"
+        name="id_tipo_fuente_evidencia"
+        [(ngModel)]="camara.id_tipo_fuente_evidencia"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="latitud">Latitud:</label>
+      <input
+        type="text"
+        id="latitud"
+        name="latitud"
+        [(ngModel)]="camara.latitud"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="longitud">Longitud:</label>
+      <input
+        type="text"
+        id="longitud"
+        name="longitud"
+        [(ngModel)]="camara.longitud"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="punto_Referencia_inicial">Punto Ref. Inicial:</label>
+      <input
+        type="text"
+        id="punto_Referencia_inicial"
+        name="punto_Referencia_inicial"
+        [(ngModel)]="camara.punto_Referencia_inicial"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="punto_Referencia_final">Punto Ref. Final:</label>
+      <input
+        type="text"
+        id="punto_Referencia_final"
+        name="punto_Referencia_final"
+        [(ngModel)]="camara.punto_Referencia_final"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="metros_referencia">Metros Referencia:</label>
+      <input
+        type="number"
+        id="metros_referencia"
+        name="metros_referencia"
+        [(ngModel)]="camara.metros_referencia"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="velocidad_maxima_camara">Velocidad Máxima:</label>
+      <input
+        type="number"
+        id="velocidad_maxima_camara"
+        name="velocidad_maxima_camara"
+        [(ngModel)]="camara.velocidad_maxima_camara"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="tolerancia_permitida">Tolerancia Permitida:</label>
+      <input
+        type="number"
+        id="tolerancia_permitida"
+        name="tolerancia_permitida"
+        [(ngModel)]="camara.tolerancia_permitida"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="resolucion_camara">Resolución Cámara:</label>
+      <input
+        type="text"
+        id="resolucion_camara"
+        name="resolucion_camara"
+        [(ngModel)]="camara.resolucion_camara"
+      />
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn save-btn">
+        {{ isEditMode ? "Actualizar" : "Guardar" }}
+      </button>
+      <button type="button" class="btn cancel-btn" [routerLink]="['/camaras']">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

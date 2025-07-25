@@ -1,0 +1,76 @@
+/* Importa una fuente más "corporativa" si no usas Roboto por defecto */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
+
+/* Estilos globales para la fuente (en styles.css de tu proyecto Angular) */
+body {
+  font-family: "Open Sans", sans-serif; /* Más limpia y profesional */
+}
+
+/* Estilos específicos del componente */
+.camera-form-card {
+  max-width: 800px; /* Limita el ancho del formulario */
+  margin: 20px auto; /* Centra el formulario */
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para un look más serio */
+  border-radius: 8px; /* Bordes ligeramente redondeados */
+}
+
+.form-title {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espacio entre el icono y el texto */
+  color: #3f51b5; /* Un azul corporativo */
+  font-weight: 600;
+  font-size: 1.5em; /* Tamaño de título adecuado */
+  margin-bottom: 20px;
+}
+
+.form-title mat-icon {
+  font-size: 28px; /* Tamaño del icono */
+}
+
+.form-section-panel {
+  margin-bottom: 15px;
+  border: 1px solid #e0e0e0; /* Borde sutil para las secciones */
+  border-radius: 4px;
+}
+
+.form-section-panel .mat-expansion-panel-header {
+  background-color: #f5f5f5; /* Fondo más claro para el encabezado de la sección */
+  font-weight: 600;
+  color: #555;
+  padding: 0 20px;
+}
+
+.form-section-panel .mat-panel-title mat-icon {
+  margin-right: 8px;
+  color: #607d8b; /* Color para los iconos de sección */
+}
+
+.form-row {
+  display: flex;
+  gap: 20px; /* Espacio entre los campos en la misma fila */
+  margin-bottom: 15px; /* Espacio entre las filas */
+  flex-wrap: wrap; /* Permite que los campos se envuelvan en pantallas pequeñas */
+}
+
+.form-field {
+  flex: 1; /* Distribuye el espacio equitativamente */
+  min-width: 280px; /* Ancho mínimo para cada campo */
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end; /* Alinea los botones a la derecha */
+  gap: 10px; /* Espacio entre los botones */
+  margin-top: 25px;
+}
+
+button[mat-raised-button] {
+  padding: 10px 20px;
+  font-size: 1em;
+}
+
+button[mat-raised-button] mat-icon {
+  margin-right: 5px;
+}

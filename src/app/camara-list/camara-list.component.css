@@ -1,0 +1,63 @@
+/* src/app/camara-list/camara-list.component.css */
+.container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.camara-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.camara-table th,
+.camara-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.camara-table th {
+  background-color: #f2f2f2;
+  color: #555;
+}
+
+.btn {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-right: 5px;
+}
+
+.add-btn {
+  background-color: #28a745;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.edit-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.no-data {
+  margin-top: 20px;
+  font-style: italic;
+  color: #666;
+}

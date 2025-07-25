@@ -1,0 +1,49 @@
+<div class="container">
+  <h2>Lista de Cámaras</h2>
+
+  <button class="btn add-btn" [routerLink]="['/camaras/new']">
+    Crear Nueva Cámara
+  </button>
+
+  <div *ngIf="camaras.length === 0" class="no-data">
+    <p>No hay cámaras registradas.</p>
+  </div>
+
+  <table *ngIf="camaras.length > 0" class="camara-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Alias</th>
+        <th>Código Cámara</th>
+        <th>Dirección</th>
+        <th>Serial</th>
+        <th>Activo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let camara of camaras">
+        <td>{{ camara.id_info_camara }}</td>
+        <td>{{ camara.alias_camara }}</td>
+        <td>{{ camara.codigo_camara }}</td>
+        <td>{{ camara.direccion }}</td>
+        <td>{{ camara.serial_camara }}</td>
+        <td>{{ camara.activo }}</td>
+        <td>
+          <button
+            class="btn edit-btn"
+            [routerLink]="['/camaras/edit', camara.id_info_camara]"
+          >
+            Editar
+          </button>
+          <button
+            class="btn delete-btn"
+            (click)="deleteCamara(camara.id_info_camara)"
+          >
+            Eliminar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

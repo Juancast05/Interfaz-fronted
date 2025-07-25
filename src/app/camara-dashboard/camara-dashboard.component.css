@@ -1,0 +1,88 @@
+/* src/app/camara/camara-dashboard/camara-dashboard.component.css */
+.container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  margin-bottom: 25px;
+}
+
+.card h3 {
+  color: #007bff;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 10px;
+  font-size: 1.5em;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Espacio entre los grupos de formulario */
+  align-items: flex-end; /* Alinea los elementos en la parte inferior */
+}
+
+.form-group-filter {
+  flex: 1; /* Permite que los elementos se distribuyan uniformemente */
+  min-width: 200px; /* Ancho mínimo para cada campo */
+}
+
+.form-group-filter label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #555;
+}
+
+.form-group-filter select,
+.form-group-filter input[type="text"] {
+  /* Por si hay inputs de texto en filtros */
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.actions-filter {
+  display: flex;
+  align-items: flex-end; /* Alinea el botón con la parte inferior de los campos */
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.primary-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.primary-btn:hover {
+  opacity: 0.9;
+}
+
+/* Estilos para las secciones */
+.filter-section {
+  background-color: #eaf3ff; /* Un color suave para la sección de filtros */
+}
+
+.add-section {
+  background-color: #f9f9f9;
+}
