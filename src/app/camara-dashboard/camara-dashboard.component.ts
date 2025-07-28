@@ -10,7 +10,7 @@ import { CamaraFormComponent } from '../camara-form/camara-form.component';
 import { CamaraListComponent } from '../camara-list/camara-list.component';
 
 import { ClienteSistema } from '../models/cliente-sistema.model';
-import { ClienteSistemaService } from '../services/cliente-sistema.service';
+import { ClienteService } from '../services/cliente.service';
 
 @Component({
   selector: 'app-camara-dashboard',
@@ -30,14 +30,14 @@ export class CamaraDashboardComponent implements OnInit {
   clienteFiltro: number = 0; // 0 para "Todos" o ID del cliente
   clientesSistema: ClienteSistema[] = []; // Lista de clientes para el dropdown del filtro
 
-  constructor(private clienteSistemaService: ClienteSistemaService) {}
+  constructor(private clienteService: ClienteService) {}
 
   ngOnInit(): void {
     this.loadClientesSistemaForFilter();
   }
 
   loadClientesSistemaForFilter(): void {
-    this.clienteSistemaService.getAllClientesSistema().subscribe({
+    this.clienteService.getAllClientes().subscribe({
       next: (data) => {
         this.clientesSistema = data;
         console.log(

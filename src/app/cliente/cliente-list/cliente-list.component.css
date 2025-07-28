@@ -1,0 +1,95 @@
+/* src/app/cliente/cliente-list/cliente-list.component.css */
+
+/* Importa una fuente más "corporativa" si no usas Roboto por defecto (si la tienes en styles.css global, no es necesario aquí) */
+/* @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap"); */
+
+.container {
+  padding: 20px;
+  font-family: "Open Sans", sans-serif; /* Aplica la fuente corporativa */
+}
+
+/* Estilo para la tarjeta principal (mat-card) */
+.cliente-list-card {
+  max-width: 900px; /* Limita el ancho del formulario */
+  margin: 20px auto; /* Centra el formulario */
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para un look más serio */
+  border-radius: 8px; /* Bordes ligeramente redondeados */
+  background-color: #ffffff; /* Fondo blanco explícito */
+}
+
+/* Título de la tarjeta (h2 con mat-icon) */
+.form-title {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espacio entre el icono y el texto */
+  color: #3f51b5; /* Un azul corporativo */
+  font-weight: 600;
+  font-size: 1.5em; /* Tamaño de título adecuado */
+  margin-bottom: 20px;
+}
+
+.form-title mat-icon {
+  font-size: 28px; /* Tamaño del icono */
+  color: #3f51b5; /* Asegura el color del icono */
+}
+
+/* Botón de "Añadir Nuevo Cliente" */
+.add-new-button {
+  background-color: #28a745; /* Verde de éxito */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1em;
+  margin-bottom: 20px;
+  display: block; /* Ocupa su propia línea */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.add-new-button:hover {
+  opacity: 0.9;
+}
+
+.add-new-button mat-icon {
+  margin-right: 5px; /* Espacio entre icono y texto */
+}
+
+/* Estilos para la tabla de Angular Material */
+.cliente-material-table {
+  width: 100%;
+  /* mat-elevation-z8 ya le da una sombra */
+  border-collapse: collapse; /* Para asegurar bordes unificados */
+}
+
+.cliente-material-table th.mat-header-cell,
+.cliente-material-table td.mat-cell {
+  border: 1px solid #ddd; /* Bordes de celdas como en tu css anterior */
+  padding: 8px;
+  text-align: left;
+}
+
+.cliente-material-table th.mat-header-cell {
+  background-color: #f2f2f2;
+  color: #555;
+  font-weight: 600; /* Headers un poco más gruesos */
+}
+
+/* Acciones en la tabla */
+.mat-column-acciones {
+  text-align: center;
+  width: 120px;
+}
+
+.mat-icon-button {
+  margin: 0 4px;
+  /* Los colores se definen con 'color="accent"' y 'color="warn"' en el HTML */
+}
+
+/* Mensaje de no datos */
+.no-data {
+  margin-top: 20px;
+  font-style: italic;
+  color: #666;
+  text-align: center;
+}

@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { Camara } from '../models/camara.model';
 import { ClienteSistema } from '../models/cliente-sistema.model';
 import { CamaraService } from '../services/camara.service';
-import { ClienteSistemaService } from '../services/cliente-sistema.service';
+import { ClienteService } from '../services/cliente.service';
 
 @Component({
   selector: 'app-camara-form',
@@ -48,7 +48,7 @@ export class CamaraFormComponent implements OnInit {
 
   constructor(
     private camaraService: CamaraService,
-    private clienteSistemaService: ClienteSistemaService,
+    private clienteService: ClienteService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -74,7 +74,7 @@ export class CamaraFormComponent implements OnInit {
   }
 
   loadClientesSistema(): void {
-    this.clienteSistemaService.getAllClientesSistema().subscribe({
+    this.clienteService.getAllClientes().subscribe({
       next: (data) => {
         this.clientesSistema = data;
         console.log('Clientes Sistema cargados:', this.clientesSistema);

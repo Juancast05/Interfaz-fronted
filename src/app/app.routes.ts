@@ -1,18 +1,22 @@
-// src/app/app.routes.ts
 import { Routes } from '@angular/router';
 
-// Esta ruta ahora será correcta porque la carpeta "camara-dashboard" existe
-import { CamaraDashboardComponent } from './camara-dashboard/camara-dashboard.component';
-
-// Estas rutas ya deberían estar correctas después de moverlos directamente a 'app/'
+// Importa tus componentes de cámara (asumo que los tienes)
 import { CamaraListComponent } from './camara-list/camara-list.component';
 import { CamaraFormComponent } from './camara-form/camara-form.component';
 
+// Importa los componentes de cliente
+import { ClienteListComponent } from './cliente/cliente-list/cliente-list.component';
+import { ClienteFormComponent } from './cliente/cliente-form/cliente-form.component';
+
 export const routes: Routes = [
-  { path: '', redirectTo: '/camaras-dashboard', pathMatch: 'full' },
-  { path: 'camaras-dashboard', component: CamaraDashboardComponent },
+  { path: '', redirectTo: '/camaras', pathMatch: 'full' }, // Redirección inicial
   { path: 'camaras', component: CamaraListComponent },
   { path: 'camaras/new', component: CamaraFormComponent },
   { path: 'camaras/edit/:id', component: CamaraFormComponent },
-  { path: '**', redirectTo: '/camaras-dashboard' },
+  // ** RUTAS PARA CLIENTES **
+  { path: 'clientes', component: ClienteListComponent },
+  { path: 'clientes/new', component: ClienteFormComponent },
+  { path: 'clientes/edit/:id', component: ClienteFormComponent },
+  // Ruta comodín para cualquier otra URL no definida
+  { path: '**', redirectTo: '/camaras' },
 ];

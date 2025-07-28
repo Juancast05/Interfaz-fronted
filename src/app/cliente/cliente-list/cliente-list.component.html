@@ -1,0 +1,80 @@
+<div class="container">
+  <mat-card class="cliente-list-card">
+    <mat-card-header>
+      <h2 class="form-title"><mat-icon>group</mat-icon> Lista de Clientes</h2>
+    </mat-card-header>
+    <mat-card-content>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="addCliente()"
+        class="add-new-button"
+      >
+        <mat-icon>add</mat-icon> Añadir Nuevo Cliente
+      </button>
+
+      <div *ngIf="clientes.length > 0; else noClientes">
+        <table
+          mat-table
+          [dataSource]="clientes"
+          class="mat-elevation-z8 cliente-material-table"
+        >
+          <ng-container matColumnDef="id_cliente_sistema">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let cliente">
+              {{ cliente.id_cliente_sistema }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let cliente">{{ cliente.nombre }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="ruta_base">
+            <th mat-header-cell *matHeaderCellDef>Ruta Base</th>
+            <td mat-cell *matCellDef="let cliente">{{ cliente.ruta_base }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="nodos">
+            <th mat-header-cell *matHeaderCellDef>Nodos</th>
+            <td mat-cell *matCellDef="let cliente">{{ cliente.nodos }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="activo">
+            <th mat-header-cell *matHeaderCellDef>Activo</th>
+            <td mat-cell *matCellDef="let cliente">{{ cliente.activo }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let cliente">
+              <button
+                mat-icon-button
+                color="accent"
+                (click)="editCliente(cliente.id_cliente_sistema!)"
+                title="Editar"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                mat-icon-button
+                color="warn"
+                (click)="deleteCliente(cliente.id_cliente_sistema!)"
+                title="Eliminar"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+      <ng-template #noClientes>
+        <p class="no-data">No hay clientes registrados.</p>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
+</div>

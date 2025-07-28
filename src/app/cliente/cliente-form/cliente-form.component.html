@@ -1,0 +1,170 @@
+<div class="container">
+  <mat-card class="camera-form-card">
+    <h2 class="form-title">
+      <mat-icon>{{ isEditMode ? "edit" : "person_add" }}</mat-icon>
+      {{ isEditMode ? "Editar Cliente" : "Registrar Nuevo Cliente" }}
+    </h2>
+
+    <form [formGroup]="clienteForm" (ngSubmit)="onSubmit()">
+      <mat-expansion-panel [expanded]="true" class="form-section-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>info</mat-icon>
+            Información General
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre" required />
+            <mat-error
+              *ngIf="
+                clienteForm.controls['nombre'].hasError('required') &&
+                clienteForm.controls['nombre'].touched
+              "
+              >El nombre es requerido</mat-error
+            >
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Código Externo</mat-label>
+            <input matInput formControlName="codigo_externo" required />
+            <mat-error
+              *ngIf="
+                clienteForm.controls['codigo_externo'].hasError('required') &&
+                clienteForm.controls['codigo_externo'].touched
+              "
+              >El código externo es requerido</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Activo</mat-label>
+            <mat-select formControlName="activo" required>
+              <mat-option value="SI">SI</mat-option>
+              <mat-option value="NO">NO</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="
+                clienteForm.controls['activo'].hasError('required') &&
+                clienteForm.controls['activo'].touched
+              "
+              >Este campo es requerido</mat-error
+            >
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Aplica Sábado</mat-label>
+            <mat-select formControlName="aplica_sabado" required>
+              <mat-option value="SI">SI</mat-option>
+              <mat-option value="NO">NO</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="
+                clienteForm.controls['aplica_sabado'].hasError('required') &&
+                clienteForm.controls['aplica_sabado'].touched
+              "
+              >Este campo es requerido</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel [expanded]="true" class="form-section-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>route</mat-icon>
+            Configuración de Rutas y Nodos
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Ruta Base</mat-label>
+            <input matInput formControlName="ruta_base" required />
+            <mat-error
+              *ngIf="
+                clienteForm.controls['ruta_base'].hasError('required') &&
+                clienteForm.controls['ruta_base'].touched
+              "
+              >La ruta base es requerida</mat-error
+            >
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Ruta Destino</mat-label>
+            <input matInput formControlName="ruta_destino" required />
+            <mat-error
+              *ngIf="
+                clienteForm.controls['ruta_destino'].hasError('required') &&
+                clienteForm.controls['ruta_destino'].touched
+              "
+              >La ruta destino es requerida</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>URL Registro Detección</mat-label>
+            <input
+              matInput
+              formControlName="url_registro_detenccion"
+              required
+            />
+            <mat-error
+              *ngIf="
+                clienteForm.controls['url_registro_detenccion'].hasError(
+                  'required'
+                ) && clienteForm.controls['url_registro_detenccion'].touched
+              "
+              >La URL es requerida</mat-error
+            >
+            <mat-error
+              *ngIf="
+                clienteForm.controls['url_registro_detenccion'].hasError(
+                  'pattern'
+                ) && clienteForm.controls['url_registro_detenccion'].touched
+              "
+              >Formato de URL inválido (ej. http://example.com)</mat-error
+            >
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Nodos</mat-label>
+            <input matInput formControlName="nodos" type="number" required />
+            <mat-error
+              *ngIf="
+                clienteForm.controls['nodos'].hasError('required') &&
+                clienteForm.controls['nodos'].touched
+              "
+              >El número de nodos es requerido</mat-error
+            >
+            <mat-error
+              *ngIf="
+                clienteForm.controls['nodos'].hasError('min') &&
+                clienteForm.controls['nodos'].touched
+              "
+              >El número de nodos no puede ser negativo</mat-error
+            >
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+
+      <div class="form-actions">
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="clienteForm.invalid"
+        >
+          <mat-icon>{{ isEditMode ? "save" : "add_circle" }}</mat-icon>
+          {{ isEditMode ? "Actualizar" : "Registrar" }}
+        </button>
+        <button mat-raised-button color="warn" type="button" (click)="cancel()">
+          <mat-icon>cancel</mat-icon>
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>
