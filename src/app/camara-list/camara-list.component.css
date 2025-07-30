@@ -1,63 +1,97 @@
-/* src/app/camara-list/camara-list.component.css */
+/* src/app/camara/camara-list/camara-list.component.css */
+
+/* Importa una fuente más "corporativa" si no usas Roboto por defecto (si la tienes en styles.css global, no es necesario aquí) */
+/* @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap"); */
+
 .container {
   padding: 20px;
-  font-family: Arial, sans-serif;
+  font-family: "Open Sans", sans-serif; /* Aplica la fuente corporativa */
 }
 
-h2 {
-  color: #333;
+/* Estilo para la tarjeta principal (mat-card) */
+.camara-list-card {
+  /* Renombrado de .cliente-list-card */
+  max-width: 900px; /* Limita el ancho del formulario */
+  margin: 20px auto; /* Centra el formulario */
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para un look más serio */
+  border-radius: 8px; /* Bordes ligeramente redondeados */
+  background-color: #ffffff; /* Fondo blanco explícito */
+}
+
+/* Título de la tarjeta (h2 con mat-icon) */
+.form-title {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espacio entre el icono y el texto */
+  color: #3f51b5; /* Un azul corporativo */
+  font-weight: 600;
+  font-size: 1.5em; /* Tamaño de título adecuado */
   margin-bottom: 20px;
 }
 
-.camara-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
+.form-title mat-icon {
+  font-size: 28px; /* Tamaño del icono */
+  color: #3f51b5; /* Asegura el color del icono */
 }
 
-.camara-table th,
-.camara-table td {
-  border: 1px solid #ddd;
+/* Botón de "Crear Nueva Cámara" */
+.add-new-button {
+  background-color: #28a745; /* Verde de éxito */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1em;
+  margin-bottom: 20px;
+  display: block; /* Ocupa su propia línea */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.add-new-button:hover {
+  opacity: 0.9;
+}
+
+.add-new-button mat-icon {
+  margin-right: 5px; /* Espacio entre icono y texto */
+}
+
+/* Estilos para la tabla de Angular Material */
+.camara-material-table {
+  /* Renombrado de .cliente-material-table */
+  width: 100%;
+  /* mat-elevation-z8 ya le da una sombra */
+  border-collapse: collapse; /* Para asegurar bordes unificados */
+}
+
+.camara-material-table th.mat-header-cell,
+.camara-material-table td.mat-cell {
+  border: 1px solid #ddd; /* Bordes de celdas como en tu css anterior */
   padding: 8px;
   text-align: left;
 }
 
-.camara-table th {
+.camara-material-table th.mat-header-cell {
   background-color: #f2f2f2;
   color: #555;
+  font-weight: 600; /* Headers un poco más gruesos */
 }
 
-.btn {
-  padding: 8px 12px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  margin-right: 5px;
+/* Acciones en la tabla */
+.mat-column-acciones {
+  text-align: center;
+  width: 120px;
 }
 
-.add-btn {
-  background-color: #28a745;
-  color: white;
-  margin-bottom: 15px;
+.mat-icon-button {
+  margin: 0 4px;
+  /* Los colores se definen con 'color="accent"' y 'color="warn"' en el HTML */
 }
 
-.edit-btn {
-  background-color: #007bff;
-  color: white;
-}
-
-.delete-btn {
-  background-color: #dc3545;
-  color: white;
-}
-
-.btn:hover {
-  opacity: 0.9;
-}
-
+/* Mensaje de no datos */
 .no-data {
   margin-top: 20px;
   font-style: italic;
   color: #666;
+  text-align: center;
 }

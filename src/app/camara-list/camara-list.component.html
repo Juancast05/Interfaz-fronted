@@ -1,49 +1,89 @@
 <div class="container">
-  <h2>Lista de Cámaras</h2>
+  <mat-card class="camara-list-card">
+    <mat-card-header>
+      <h2 class="form-title"><mat-icon>videocam</mat-icon> Lista de Cámaras</h2>
+    </mat-card-header>
+    <mat-card-content>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="addCamara()"
+        class="add-new-button"
+      >
+        <mat-icon>add</mat-icon> Crear Nueva Cámara
+      </button>
 
-  <button class="btn add-btn" [routerLink]="['/camaras/new']">
-    Crear Nueva Cámara
-  </button>
+      <div *ngIf="camaras.length > 0; else noCamaras">
+        <table
+          mat-table
+          [dataSource]="camaras"
+          class="mat-elevation-z8 camara-material-table"
+        >
+          <ng-container matColumnDef="id_info_camara">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let camara">
+              {{ camara.id_info_camara }}
+            </td>
+          </ng-container>
 
-  <div *ngIf="camaras.length === 0" class="no-data">
-    <p>No hay cámaras registradas.</p>
-  </div>
+          <ng-container matColumnDef="alias_camara">
+            <th mat-header-cell *matHeaderCellDef>Alias</th>
+            <td mat-cell *matCellDef="let camara">{{ camara.alias_camara }}</td>
+          </ng-container>
 
-  <table *ngIf="camaras.length > 0" class="camara-table">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Alias</th>
-        <th>Código Cámara</th>
-        <th>Dirección</th>
-        <th>Serial</th>
-        <th>Activo</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let camara of camaras">
-        <td>{{ camara.id_info_camara }}</td>
-        <td>{{ camara.alias_camara }}</td>
-        <td>{{ camara.codigo_camara }}</td>
-        <td>{{ camara.direccion }}</td>
-        <td>{{ camara.serial_camara }}</td>
-        <td>{{ camara.activo }}</td>
-        <td>
-          <button
-            class="btn edit-btn"
-            [routerLink]="['/camaras/edit', camara.id_info_camara]"
-          >
-            Editar
-          </button>
-          <button
-            class="btn delete-btn"
-            (click)="deleteCamara(camara.id_info_camara)"
-          >
-            Eliminar
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+          <ng-container matColumnDef="codigo_camara">
+            <th mat-header-cell *matHeaderCellDef>Código Cámara</th>
+            <td mat-cell *matCellDef="let camara">
+              {{ camara.codigo_camara }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="direccion">
+            <th mat-header-cell *matHeaderCellDef>Dirección</th>
+            <td mat-cell *matCellDef="let camara">{{ camara.direccion }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="serial_camara">
+            <th mat-header-cell *matHeaderCellDef>Serial</th>
+            <td mat-cell *matCellDef="let camara">
+              {{ camara.serial_camara }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="activo">
+            <th mat-header-cell *matHeaderCellDef>Activo</th>
+            <td mat-cell *matCellDef="let camara">{{ camara.activo }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let camara">
+              <button
+                mat-icon-button
+                color="accent"
+                (click)="editCamara(camara.id_info_camara)"
+                title="Editar"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                mat-icon-button
+                color="warn"
+                (click)="deleteCamara(camara.id_info_camara)"
+                title="Eliminar"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+      <ng-template #noCamaras>
+        <p class="no-data">No hay cámaras registradas.</p>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
 </div>

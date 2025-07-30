@@ -92,14 +92,33 @@ button[mat-raised-button] mat-icon {
   margin-right: 5px;
 }
 
-/* Ajustes de color para botones específicos si es necesario (ya se manejan con color="primary/warn" en HTML) */
-/*
-button[mat-raised-button][color="primary"] {
-    background-color: #3f51b5;
-    color: white;
+.cdk-overlay-pane {
+  z-index: 10000 !important; /* Valor muy alto para asegurar que esté siempre encima */
 }
-button[mat-raised-button][color="warn"] {
-    background-color: #f44336;
-    color: white;
+
+/* Asegura que el panel del select tenga un fondo opaco. */
+.mat-select-panel {
+  background-color: white; /* Fondo blanco para que no haya "transparencia" */
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12); /* Sombra estándar de Material */
+  border-radius: 4px; /* Bordes ligeramente redondeados, por consistencia */
 }
-*/
+
+/* Asegurarse de que el contenedor de la fila de formularios permita que el contenido "salga" */
+.form-row {
+  overflow: visible; /* IMPORTE: permite que los menús desplegables se salgan de la fila sin ser cortados */
+  /* Si tienes un 'overflow: hidden' en algún padre del form-row, también necesitarías ajustarlo. */
+}
+
+/* Ajustes menores para el espaciado de los campos de Material si es necesario */
+.mat-form-field {
+  margin-bottom: 10px; /* Asegura espacio entre campos */
+  /* Agrega un ancho del 100% para que ocupen todo el espacio disponible dentro de su columna */
+  width: 100%;
+}
+
+/* Ajuste para que los mensajes de error tengan un espacio adecuado */
+.mat-error {
+  margin-top: 4px; /* Espacio entre el campo y el mensaje de error */
+  line-height: 1.2; /* Mejora la legibilidad si el mensaje es largo */
+}

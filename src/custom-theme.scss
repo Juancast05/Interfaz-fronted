@@ -1,0 +1,7 @@
+// src/custom-theme.scss
+@use "@angular/material" as mat; // Solo esta línea al principio.
+
+// Luego, descomenta progresivamente las siguientes líneas y prueba la compilación
+// @include mat.core();
+// $my-primary: mat.define-palette(mat.$indigo-palette);
+// ...
