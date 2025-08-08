@@ -1,0 +1,18 @@
+<div class="main-container">
+  <h2>Tablas Paramétricas</h2>
+  <div class="card-container">
+    <mat-card *ngFor="let tabla of tablas" class="tabla-card">
+      <mat-card-header>
+        <mat-card-title>{{ tabla.titulo }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ tabla.descripcion }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <a mat-button color="primary" [routerLink]="[tabla.ruta]">
+          Administrar
+        </a>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
