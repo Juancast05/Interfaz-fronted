@@ -20,14 +20,19 @@ interface TablaParametrica {
 export class TablasParametricasComponent {
   tablas: TablaParametrica[] = [
     {
-      titulo: 'Proveedores de Cámara',
-      descripcion: 'Administra la lista de proveedores de cámaras.',
-      ruta: 'proveedores-camara',
+      titulo: 'Calendarios PYP',
+      descripcion: 'Administra la lista de calendarios pyp.',
+      ruta: 'tipos-calendario-pyp',
     },
     {
-      titulo: 'Tipos de Cámara',
-      descripcion: 'Administra los tipos de cámaras disponibles.',
-      ruta: 'tipos-camara',
+      titulo: 'Tipos de Clase de Vehículo',
+      descripcion: 'Administra la lista de proveedores de cámaras.',
+      ruta: 'tipos-clase-vehiculo',
+    },
+    {
+      titulo: 'Tipos de Estado Evidencia',
+      descripcion: 'Administra los tipos de estado de evidencia.',
+      ruta: 'tipos-estado-evidencia',
     },
     {
       titulo: 'Tipos de Tecnología',

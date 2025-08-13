@@ -1,0 +1,128 @@
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
+import { MatExpansionModule } from '@angular/material/expansion';
+
+import { TipoCalendarioPyp } from '../../models/tipo_calendario_pyp.model';
+import { TipoCalendarioPypService } from '../../services/tipo-calendario-pyp.service';
+
+@Component({
+  selector: 'app-tipo-calendario-pyp-form',
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatIconModule,
+    MatExpansionModule,
+    MatSnackBarModule,
+  ],
+  templateUrl: './tipo-calendario-pyp-form.component.html',
+  styleUrl: './tipo-calendario-pyp-form.component.css',
+})
+export class TipoCalendarioPypFormComponent implements OnInit {
+  tipoCalendarioPypForm!: FormGroup;
+  isEditMode: boolean = false;
+  itemId: number | null = null;
+
+  constructor(
+    private fb: FormBuilder,
+    private service: TipoCalendarioPypService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {}
+
+  ngOnInit(): void {
+    this.tipoCalendarioPypForm = this.fb.group({
+      id_tipo_calendario_pyp: [null],
+      nombre: ['', Validators.required],
+      fecha_registra: [null],
+      fecha_inactiva: [null],
+      activo: ['SI', Validators.required],
+    });
+
+    this.route.paramMap.subscribe((params) => {
+      const id = params.get('id');
+      if (id) {
+        this.isEditMode = true;
+        this.itemId = +id;
+        this.service.getById(this.itemId).subscribe({
+          next: (data) => this.tipoCalendarioPypForm.patchValue(data),
+          error: (e) => {
+            console.error('Error al cargar el registro para edición', e);
+            this.snackBar.open('Error al cargar los datos.', 'Cerrar', {
+              duration: 3000,
+            });
+            this.router.navigate(['/catalogos/tipos-calendario-pyp']);
+          },
+        });
+      }
+    });
+  }
+
+  onSubmit(): void {
+    if (this.tipoCalendarioPypForm.valid) {
+      const item: TipoCalendarioPyp = this.tipoCalendarioPypForm.value;
+      if (this.isEditMode && this.itemId) {
+        this.service.update(this.itemId, item).subscribe({
+          next: () => {
+            this.snackBar.open('Registro actualizado exitosamente', 'Cerrar', {
+              duration: 3000,
+            });
+            this.router.navigate(['/catalogos/tipos-calendario-pyp']);
+          },
+          error: (e) => {
+            console.error('Error al actualizar registro', e);
+            this.snackBar.open('Error al actualizar el registro.', 'Cerrar', {
+              duration: 3000,
+            });
+          },
+        });
+      } else {
+        this.service.create(item).subscribe({
+          next: () => {
+            this.snackBar.open('Registro creado exitosamente', 'Cerrar', {
+              duration: 3000,
+            });
+            this.router.navigate(['/catalogos/tipos-calendario-pyp']);
+          },
+          error: (e) => {
+            console.error('Error al crear registro', e);
+            this.snackBar.open('Error al crear el registro.', 'Cerrar', {
+              duration: 3000,
+            });
+          },
+        });
+      }
+    } else {
+      this.snackBar.open(
+        'Por favor, completa todos los campos requeridos.',
+        'Cerrar',
+        { duration: 3000 }
+      );
+      this.tipoCalendarioPypForm.markAllAsTouched();
+    }
+  }
+
+  cancel(): void {
+    this.router.navigate(['/catalogos/tipos-calendario-pyp']);
+  }
+}

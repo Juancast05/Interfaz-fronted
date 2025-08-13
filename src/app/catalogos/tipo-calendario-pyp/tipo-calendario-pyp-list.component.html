@@ -1,0 +1,77 @@
+<div class="container">
+  <mat-card class="tipo-calendario-pyp-list-card">
+    <mat-card-header>
+      <h2 class="form-title">
+        <mat-icon>calendar_today</mat-icon>
+        Lista de Tipos de Calendario PYP
+      </h2>
+    </mat-card-header>
+    <mat-card-content>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="addCalendario()"
+        class="add-new-button"
+      >
+        <mat-icon>add</mat-icon> Nuevo Calendario
+      </button>
+
+      <div *ngIf="calendarios.length > 0; else noCalendarios">
+        <table
+          mat-table
+          [dataSource]="calendarios"
+          class="mat-elevation-z8 tipo-calendario-pyp-material-table"
+        >
+          <!-- Columna de ID -->
+          <ng-container matColumnDef="id_tipo_calendario_pyp">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.idTipoCalendarioPyp }}
+            </td>
+          </ng-container>
+
+          <!-- Columna de Nombre -->
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
+          </ng-container>
+
+          <!-- Columna de Activo -->
+          <ng-container matColumnDef="activo">
+            <th mat-header-cell *matHeaderCellDef>Activo</th>
+            <td mat-cell *matCellDef="let element">{{ element.activo }}</td>
+          </ng-container>
+
+          <!-- Columna de Acciones -->
+          <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let element">
+              <button
+                mat-icon-button
+                color="accent"
+                (click)="editCalendario(element.idTipoCalendarioPyp)"
+                title="Editar"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                mat-icon-button
+                color="warn"
+                (click)="deleteCalendario(element.idTipoCalendarioPyp)"
+                title="Eliminar"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+      <ng-template #noCalendarios>
+        <p class="no-data">No hay tipos de calendario PYP registrados.</p>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
+</div>

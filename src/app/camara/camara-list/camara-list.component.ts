@@ -2,8 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router'; // Asegúrate de que Router esté importado
-import { Camara } from '../models/camara.model';
-import { CamaraService } from '../services/camara.service';
+import { Camara } from '../../models/camara.model';
+import { CamaraService } from '../../services/camara.service';
 
 // Angular Material Imports
 import { MatTableModule } from '@angular/material/table';

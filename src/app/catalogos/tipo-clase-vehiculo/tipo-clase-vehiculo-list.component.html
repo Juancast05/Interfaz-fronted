@@ -1,0 +1,93 @@
+<div class="container">
+  <mat-card class="tipo-clase-vehiculo-list-card">
+    <mat-card-header>
+      <h2 class="form-title">
+        <mat-icon>directions_car</mat-icon>
+        Lista de Tipos de Clase de Vehículo
+      </h2>
+    </mat-card-header>
+    <mat-card-content>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="addTipoClaseVehiculo()"
+        class="add-new-button"
+      >
+        <mat-icon>add</mat-icon> Crear Nuevo Tipo
+      </button>
+
+      <div *ngIf="tiposClaseVehiculo.length > 0; else noTipos">
+        <table
+          mat-table
+          [dataSource]="tiposClaseVehiculo"
+          class="mat-elevation-z8 tipo-clase-vehiculo-material-table"
+        >
+          <!-- Columna de ID -->
+          <ng-container matColumnDef="idTipoClaseVehiculo">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.idTipoClaseVehiculo }}
+            </td>
+          </ng-container>
+
+          <!-- Columna de ID Cliente -->
+          <ng-container matColumnDef="idClienteSistema">
+            <th mat-header-cell *matHeaderCellDef>ID Cliente</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.idClienteSistema }}
+            </td>
+          </ng-container>
+
+          <!-- Columna de Código -->
+          <ng-container matColumnDef="codigoClasificacion">
+            <th mat-header-cell *matHeaderCellDef>Código de Clasificación</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.codigoClasificacion }}
+            </td>
+          </ng-container>
+
+          <!-- Columna de Nombre -->
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
+          </ng-container>
+
+          <!-- Columna de Activo -->
+          <ng-container matColumnDef="activo">
+            <th mat-header-cell *matHeaderCellDef>Activo</th>
+            <td mat-cell *matCellDef="let element">{{ element.activo }}</td>
+          </ng-container>
+
+          <!-- Columna de Acciones -->
+          <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let element">
+              <button
+                mat-icon-button
+                color="accent"
+                (click)="editTipoClaseVehiculo(element.idTipoClaseVehiculo)"
+                title="Editar"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                mat-icon-button
+                color="warn"
+                (click)="deleteTipoClaseVehiculo(element.idTipoClaseVehiculo)"
+                title="Eliminar"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+      <ng-template #noTipos>
+        <p class="no-data">No hay tipos de clase de vehículo registrados.</p>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
+</div>

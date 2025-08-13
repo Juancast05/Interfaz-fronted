@@ -1,0 +1,142 @@
+<div class="container">
+  <mat-card class="tipo-clase-vehiculo-form-card">
+    <h2 class="form-title">
+      <mat-icon>{{ isEditMode ? "edit" : "directions_car" }}</mat-icon>
+      {{
+        isEditMode
+          ? "Editar Tipo de Clase de Vehículo"
+          : "Nuevo Tipo de Clase de Vehículo"
+      }}
+    </h2>
+
+    <form [formGroup]="tipoClaseVehiculoForm" (ngSubmit)="onSubmit()">
+      <!-- Panel de expansión para Información General -->
+      <mat-expansion-panel [expanded]="true" class="form-section-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>info</mat-icon>
+            Información General
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Cliente Sistema</mat-label>
+            <!-- Este campo se mantiene como un input para coincidir con tu lógica, pero podría ser un `mat-select` -->
+            <input
+              matInput
+              formControlName="idClienteSistema"
+              required
+              type="number"
+            />
+            <mat-error
+              *ngIf="
+                tipoClaseVehiculoForm
+                  .get('idClienteSistema')
+                  ?.hasError('required') &&
+                tipoClaseVehiculoForm.get('idClienteSistema')?.touched
+              "
+            >
+              El ID del cliente es obligatorio.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre" required />
+            <mat-error
+              *ngIf="
+                tipoClaseVehiculoForm.get('nombre')?.hasError('required') &&
+                tipoClaseVehiculoForm.get('nombre')?.touched
+              "
+            >
+              El nombre del tipo de clase de vehículo es obligatorio.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Código de Clasificación</mat-label>
+            <input matInput formControlName="codigoClasificacion" required />
+            <mat-error
+              *ngIf="
+                tipoClaseVehiculoForm
+                  .get('codigoClasificacion')
+                  ?.hasError('required') &&
+                tipoClaseVehiculoForm.get('codigoClasificacion')?.touched
+              "
+            >
+              El código de clasificación es obligatorio.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Valor Homologado</mat-label>
+            <input matInput formControlName="valorHomologado" />
+          </mat-form-field>
+        </div>
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Activo</mat-label>
+            <mat-select formControlName="activo" required>
+              <mat-option value="SI">SI</mat-option>
+              <mat-option value="NO">NO</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="
+                tipoClaseVehiculoForm.get('activo')?.hasError('required') &&
+                tipoClaseVehiculoForm.get('activo')?.touched
+              "
+            >
+              El estado es obligatorio.
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+
+      <!-- Panel de expansión para Fechas, colapsado por defecto -->
+      <mat-expansion-panel class="form-section-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>date_range</mat-icon>
+            Fechas
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Fecha de Registro</mat-label>
+            <input
+              matInput
+              formControlName="fechaRegistra"
+              type="datetime-local"
+            />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Fecha de Inactivación</mat-label>
+            <input
+              matInput
+              formControlName="fechaInactiva"
+              type="datetime-local"
+            />
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+
+      <div class="form-actions">
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="tipoClaseVehiculoForm.invalid"
+        >
+          <mat-icon>{{ isEditMode ? "save" : "add_circle" }}</mat-icon>
+          {{ isEditMode ? "Actualizar" : "Guardar" }}
+        </button>
+        <button mat-raised-button color="warn" type="button" (click)="cancel()">
+          <mat-icon>cancel</mat-icon>
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

@@ -8,10 +8,10 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms'; // Usar ReactiveFormsModule y FormBuilder
-import { Camara } from '../models/camara.model';
-import { ClienteSistema } from '../models/cliente-sistema.model';
-import { CamaraService } from '../services/camara.service';
-import { ClienteService } from '../services/cliente.service';
+import { Camara } from '../../models/camara.model';
+import { ClienteSistema } from '../../models/cliente-sistema.model';
+import { CamaraService } from '../../services/camara.service';
+import { ClienteService } from '../../services/cliente.service';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';

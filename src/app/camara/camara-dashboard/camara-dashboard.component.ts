@@ -9,8 +9,8 @@ import { FormsModule } from '@angular/forms';
 import { CamaraFormComponent } from '../camara-form/camara-form.component';
 import { CamaraListComponent } from '../camara-list/camara-list.component';
 
-import { ClienteSistema } from '../models/cliente-sistema.model';
-import { ClienteService } from '../services/cliente.service';
+import { ClienteSistema } from '../../models/cliente-sistema.model';
+import { ClienteService } from '../../services/cliente.service';
 
 @Component({
   selector: 'app-camara-dashboard',
