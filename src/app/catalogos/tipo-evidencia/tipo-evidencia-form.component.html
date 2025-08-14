@@ -1,15 +1,12 @@
 <div class="container">
-  <mat-card class="tipo-estado-evidencia-form-card">
+  <mat-card class="tipo-evidencia-form-card">
     <h2 class="form-title">
-      <mat-icon>{{ isEditMode ? "edit" : "checklist" }}</mat-icon>
-      {{
-        isEditMode
-          ? "Editar Tipo de Estado de Evidencia"
-          : "Nuevo Tipo de Estado de Evidencia"
-      }}
+      <mat-icon>{{ isEditMode ? "edit" : "note_add" }}</mat-icon>
+      {{ isEditMode ? "Editar Tipo de Evidencia" : "Nuevo Tipo de Evidencia" }}
     </h2>
 
-    <form [formGroup]="tipoEstadoEvidenciaForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="tipoEvidenciaForm" (ngSubmit)="onSubmit()">
+      <!-- Panel de expansión para Información General -->
       <mat-expansion-panel [expanded]="true" class="form-section-panel">
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -19,18 +16,34 @@
         </mat-expansion-panel-header>
         <div class="form-row">
           <mat-form-field appearance="fill" class="form-field">
-            <mat-label>Nombre del Estado</mat-label>
-            <input matInput formControlName="nombre" required />
+            <mat-label>Nombre de la Evidencia</mat-label>
+            <input matInput formControlName="nombreEvidencia" required />
             <mat-error
               *ngIf="
-                tipoEstadoEvidenciaForm.get('nombre')?.hasError('required') &&
-                tipoEstadoEvidenciaForm.get('nombre')?.touched
+                tipoEvidenciaForm
+                  .get('nombreEvidencia')
+                  ?.hasError('required') &&
+                tipoEvidenciaForm.get('nombreEvidencia')?.touched
               "
             >
-              El nombre del estado es obligatorio.
+              El nombre de la evidencia es obligatorio.
             </mat-error>
           </mat-form-field>
 
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Tipo de Evidencia</mat-label>
+            <input matInput formControlName="tipoEvidencia" required />
+            <mat-error
+              *ngIf="
+                tipoEvidenciaForm.get('tipoEvidencia')?.hasError('required') &&
+                tipoEvidenciaForm.get('tipoEvidencia')?.touched
+              "
+            >
+              El tipo de evidencia es obligatorio.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-row">
           <mat-form-field appearance="fill" class="form-field">
             <mat-label>Activo</mat-label>
             <mat-select formControlName="activo" required>
@@ -39,8 +52,8 @@
             </mat-select>
             <mat-error
               *ngIf="
-                tipoEstadoEvidenciaForm.get('activo')?.hasError('required') &&
-                tipoEstadoEvidenciaForm.get('activo')?.touched
+                tipoEvidenciaForm.get('activo')?.hasError('required') &&
+                tipoEvidenciaForm.get('activo')?.touched
               "
             >
               El estado es obligatorio.
@@ -49,6 +62,7 @@
         </div>
       </mat-expansion-panel>
 
+      <!-- Panel de expansión para Fechas, colapsado por defecto -->
       <mat-expansion-panel class="form-section-panel">
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -65,15 +79,6 @@
               type="datetime-local"
             />
           </mat-form-field>
-
-          <mat-form-field appearance="fill" class="form-field">
-            <mat-label>Fecha de Inactivación</mat-label>
-            <input
-              matInput
-              formControlName="fechaInactiva"
-              type="datetime-local"
-            />
-          </mat-form-field>
         </div>
       </mat-expansion-panel>
 
@@ -82,7 +87,7 @@
           mat-raised-button
           color="primary"
           type="submit"
-          [disabled]="tipoEstadoEvidenciaForm.invalid"
+          [disabled]="tipoEvidenciaForm.invalid"
         >
           <mat-icon>{{ isEditMode ? "save" : "add_circle" }}</mat-icon>
           {{ isEditMode ? "Actualizar" : "Guardar" }}

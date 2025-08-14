@@ -16,11 +16,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion';
 
-import { TipoEstadoEvidencia } from '../../models/tipo_estado_evidencia.model';
-import { TipoEstadoEvidenciaService } from '../../services/tipo-estado-evidencia.service';
+import { TipoEvidencia } from '../../models/tipo_evidencia.model';
+import { TipoEvidenciaService } from '../../services/tipo-evidencia.service';
 
 @Component({
-  selector: 'app-tipo-estado-evidencia-form',
+  selector: 'app-tipo-evidencia-form',
   standalone: true,
   imports: [
     CommonModule,
@@ -34,28 +34,28 @@ import { TipoEstadoEvidenciaService } from '../../services/tipo-estado-evidencia
     MatExpansionModule,
     MatSnackBarModule,
   ],
-  templateUrl: './tipo-estado-evidencia-form.component.html',
-  styleUrl: './tipo-estado-evidencia-form.component.css',
+  templateUrl: './tipo-evidencia-form.component.html',
+  styleUrl: './tipo-evidencia-form.component.css',
 })
-export class TipoEstadoEvidenciaFormComponent implements OnInit {
-  tipoEstadoEvidenciaForm!: FormGroup;
+export class TipoEvidenciaFormComponent implements OnInit {
+  tipoEvidenciaForm!: FormGroup;
   isEditMode: boolean = false;
   itemId: number | null = null;
 
   constructor(
     private fb: FormBuilder,
-    private service: TipoEstadoEvidenciaService,
+    private service: TipoEvidenciaService,
     private route: ActivatedRoute,
     private router: Router,
     private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
-    this.tipoEstadoEvidenciaForm = this.fb.group({
-      idTipoEstadoEvidencia: [null],
-      nombre: ['', Validators.required],
+    this.tipoEvidenciaForm = this.fb.group({
+      idTipoEvidencia: [null],
+      nombreEvidencia: ['', Validators.required],
+      tipoEvidencia: ['', Validators.required],
       fechaRegistra: [null],
-      fechaInactiva: [null],
       activo: ['SI', Validators.required],
     });
 
@@ -65,13 +65,13 @@ export class TipoEstadoEvidenciaFormComponent implements OnInit {
         this.isEditMode = true;
         this.itemId = +id;
         this.service.getById(this.itemId).subscribe({
-          next: (data) => this.tipoEstadoEvidenciaForm.patchValue(data),
+          next: (data) => this.tipoEvidenciaForm.patchValue(data),
           error: (e) => {
             console.error('Error al cargar el registro para edición', e);
             this.snackBar.open('Error al cargar los datos.', 'Cerrar', {
               duration: 3000,
             });
-            this.router.navigate(['/catalogos/tipos-estado-evidencia']);
+            this.router.navigate(['/catalogos/tipos-evidencia']);
           },
         });
       }
@@ -79,15 +79,15 @@ export class TipoEstadoEvidenciaFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.tipoEstadoEvidenciaForm.valid) {
-      const item: TipoEstadoEvidencia = this.tipoEstadoEvidenciaForm.value;
+    if (this.tipoEvidenciaForm.valid) {
+      const item: TipoEvidencia = this.tipoEvidenciaForm.value;
       if (this.isEditMode && this.itemId) {
         this.service.update(this.itemId, item).subscribe({
           next: () => {
             this.snackBar.open('Registro actualizado exitosamente', 'Cerrar', {
               duration: 3000,
             });
-            this.router.navigate(['/catalogos/tipos-estado-evidencia']);
+            this.router.navigate(['/catalogos/tipos-evidencia']);
           },
           error: (e) => {
             console.error('Error al actualizar registro', e);
@@ -102,7 +102,7 @@ export class TipoEstadoEvidenciaFormComponent implements OnInit {
             this.snackBar.open('Registro creado exitosamente', 'Cerrar', {
               duration: 3000,
             });
-            this.router.navigate(['/catalogos/tipos-estado-evidencia']);
+            this.router.navigate(['/catalogos/tipos-evidencia']);
           },
           error: (e) => {
             console.error('Error al crear registro', e);
@@ -118,11 +118,11 @@ export class TipoEstadoEvidenciaFormComponent implements OnInit {
         'Cerrar',
         { duration: 3000 }
       );
-      this.tipoEstadoEvidenciaForm.markAllAsTouched();
+      this.tipoEvidenciaForm.markAllAsTouched();
     }
   }
 
   cancel(): void {
-    this.router.navigate(['/catalogos/tipos-estado-evidencia']);
+    this.router.navigate(['/catalogos/tipos-evidencia']);
   }
 }

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 
-import { TipoEstadoEvidencia } from '../../models/tipo_estado_evidencia.model';
-import { TipoEstadoEvidenciaService } from '../../services/tipo-estado-evidencia.service';
+import { TipoEstadoReenvio } from '../../models/tipo_estado_reenvio.model';
+import { TipoEstadoReenvioService } from '../../services/tipo-estado-reenvio.service';
 
 // Angular Material Imports
 import { MatTableModule } from '@angular/material/table';
@@ -13,7 +13,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-tipo-estado-evidencia-list',
+  selector: 'app-tipo-estado-reenvio-list',
   standalone: true,
   imports: [
     CommonModule,
@@ -24,20 +24,20 @@ import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
     MatIconModule,
     MatSnackBarModule,
   ],
-  templateUrl: './tipo-estado-evidencia-list.component.html',
-  styleUrl: './tipo-estado-evidencia-list.component.css',
+  templateUrl: './tipo-estado-reenvio-list.component.html',
+  styleUrl: './tipo-estado-reenvio-list.component.css',
 })
-export class TipoEstadoEvidenciaListComponent implements OnInit {
-  estados: TipoEstadoEvidencia[] = [];
+export class TipoEstadoReenvioListComponent implements OnInit {
+  estados: TipoEstadoReenvio[] = [];
   displayedColumns: string[] = [
-    'id_tipo_estado_evidencia',
+    'id_tipo_estado_reenvio',
     'nombre',
     'activo',
     'acciones',
   ];
 
   constructor(
-    private service: TipoEstadoEvidenciaService,
+    private service: TipoEstadoReenvioService,
     private router: Router,
     private snackBar: MatSnackBar
   ) {}
@@ -53,9 +53,9 @@ export class TipoEstadoEvidenciaListComponent implements OnInit {
         console.log('Datos cargados:', this.estados);
       },
       error: (e) => {
-        console.error('Error al cargar los estados de evidencia', e);
+        console.error('Error al cargar los estados de reenvío', e);
         this.snackBar.open(
-          'Error al cargar la lista de estados de evidencia.',
+          'Error al cargar la lista de estados de reenvío.',
           'Cerrar',
           { duration: 3000 }
         );
@@ -72,12 +72,12 @@ export class TipoEstadoEvidenciaListComponent implements OnInit {
     }
 
     if (
-      confirm('¿Estás seguro de que quieres eliminar este estado de evidencia?')
+      confirm('¿Estás seguro de que quieres eliminar este estado de reenvío?')
     ) {
       this.service.delete(id).subscribe({
         next: () => {
           this.snackBar.open(
-            'Estado de evidencia eliminado exitosamente',
+            'Estado de reenvío eliminado exitosamente',
             'Cerrar',
             {
               duration: 3000,
@@ -86,9 +86,9 @@ export class TipoEstadoEvidenciaListComponent implements OnInit {
           this.getAllEstados();
         },
         error: (e) => {
-          console.error('Error al eliminar el estado de evidencia', e);
+          console.error('Error al eliminar el estado de reenvío', e);
           this.snackBar.open(
-            'Error al eliminar el estado de evidencia.',
+            'Error al eliminar el estado de reenvío.',
             'Cerrar',
             {
               duration: 3000,
@@ -100,12 +100,12 @@ export class TipoEstadoEvidenciaListComponent implements OnInit {
   }
 
   addEstado(): void {
-    this.router.navigate(['/catalogos/tipos-estado-evidencia/new']);
+    this.router.navigate(['/catalogos/tipos-estado-reenvio/new']);
   }
 
   editEstado(id: number | undefined): void {
     if (id !== undefined) {
-      this.router.navigate(['/catalogos/tipos-estado-evidencia/edit', id]);
+      this.router.navigate(['/catalogos/tipos-estado-reenvio/edit', id]);
     } else {
       this.snackBar.open('ID de estado no válido para editar.', 'Cerrar', {
         duration: 3000,

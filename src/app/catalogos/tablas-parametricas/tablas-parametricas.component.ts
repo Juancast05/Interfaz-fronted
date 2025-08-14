@@ -35,14 +35,19 @@ export class TablasParametricasComponent {
       ruta: 'tipos-estado-evidencia',
     },
     {
-      titulo: 'Tipos de Tecnología',
-      descripcion: 'Administra los tipos de tecnología de cámaras.',
-      ruta: 'tipos-tecnologia',
+      titulo: 'Tipos de Estado Reenvío',
+      descripcion: 'Administra los tipos de estado de reenvio.',
+      ruta: 'tipos-estado-reenvio',
     },
     {
-      titulo: 'Tipos de Fuente de Evidencia',
-      descripcion: 'Administra las fuentes de evidencia.',
-      ruta: 'tipos-fuente-evidencia',
+      titulo: 'Tipos de Estado Solicitud',
+      descripcion: 'Administra los tipo de estado de solicitud.',
+      ruta: 'tipos-estado-solicitud',
+    },
+    {
+      titulo: 'Tipos de Evidencia',
+      descripcion: 'Administra los tipo de evidencia.',
+      ruta: 'tipos-evidencia',
     },
   ];
 }

@@ -1,15 +1,16 @@
 <div class="container">
-  <mat-card class="tipo-estado-evidencia-form-card">
+  <mat-card class="tipo-estado-reenvio-form-card">
     <h2 class="form-title">
-      <mat-icon>{{ isEditMode ? "edit" : "checklist" }}</mat-icon>
+      <mat-icon>{{ isEditMode ? "edit" : "sync" }}</mat-icon>
       {{
         isEditMode
-          ? "Editar Tipo de Estado de Evidencia"
-          : "Nuevo Tipo de Estado de Evidencia"
+          ? "Editar Tipo de Estado de Reenvío"
+          : "Nuevo Tipo de Estado de Reenvío"
       }}
     </h2>
 
-    <form [formGroup]="tipoEstadoEvidenciaForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="tipoEstadoReenvioForm" (ngSubmit)="onSubmit()">
+      <!-- Panel de expansión para Información General -->
       <mat-expansion-panel [expanded]="true" class="form-section-panel">
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -23,8 +24,8 @@
             <input matInput formControlName="nombre" required />
             <mat-error
               *ngIf="
-                tipoEstadoEvidenciaForm.get('nombre')?.hasError('required') &&
-                tipoEstadoEvidenciaForm.get('nombre')?.touched
+                tipoEstadoReenvioForm.get('nombre')?.hasError('required') &&
+                tipoEstadoReenvioForm.get('nombre')?.touched
               "
             >
               El nombre del estado es obligatorio.
@@ -39,8 +40,8 @@
             </mat-select>
             <mat-error
               *ngIf="
-                tipoEstadoEvidenciaForm.get('activo')?.hasError('required') &&
-                tipoEstadoEvidenciaForm.get('activo')?.touched
+                tipoEstadoReenvioForm.get('activo')?.hasError('required') &&
+                tipoEstadoReenvioForm.get('activo')?.touched
               "
             >
               El estado es obligatorio.
@@ -49,6 +50,7 @@
         </div>
       </mat-expansion-panel>
 
+      <!-- Panel de expansión para Fechas, colapsado por defecto -->
       <mat-expansion-panel class="form-section-panel">
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -82,7 +84,7 @@
           mat-raised-button
           color="primary"
           type="submit"
-          [disabled]="tipoEstadoEvidenciaForm.invalid"
+          [disabled]="tipoEstadoReenvioForm.invalid"
         >
           <mat-icon>{{ isEditMode ? "save" : "add_circle" }}</mat-icon>
           {{ isEditMode ? "Actualizar" : "Guardar" }}

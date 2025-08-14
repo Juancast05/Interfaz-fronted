@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 
-import { TipoEstadoEvidencia } from '../../models/tipo_estado_evidencia.model';
-import { TipoEstadoEvidenciaService } from '../../services/tipo-estado-evidencia.service';
+import { TipoEvidencia } from '../../models/tipo_evidencia.model';
+import { TipoEvidenciaService } from '../../services/tipo-evidencia.service';
 
 // Angular Material Imports
 import { MatTableModule } from '@angular/material/table';
@@ -13,7 +13,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-tipo-estado-evidencia-list',
+  selector: 'app-tipo-evidencia-list',
   standalone: true,
   imports: [
     CommonModule,
@@ -24,38 +24,39 @@ import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
     MatIconModule,
     MatSnackBarModule,
   ],
-  templateUrl: './tipo-estado-evidencia-list.component.html',
-  styleUrl: './tipo-estado-evidencia-list.component.css',
+  templateUrl: './tipo-evidencia-list.component.html',
+  styleUrl: './tipo-evidencia-list.component.css',
 })
-export class TipoEstadoEvidenciaListComponent implements OnInit {
-  estados: TipoEstadoEvidencia[] = [];
+export class TipoEvidenciaListComponent implements OnInit {
+  evidencias: TipoEvidencia[] = [];
   displayedColumns: string[] = [
-    'id_tipo_estado_evidencia',
-    'nombre',
+    'id_tipo_evidencia',
+    'nombre_evidencia',
+    'tipo_evidencia',
     'activo',
     'acciones',
   ];
 
   constructor(
-    private service: TipoEstadoEvidenciaService,
+    private service: TipoEvidenciaService,
     private router: Router,
     private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
-    this.getAllEstados();
+    this.getAllEvidencias();
   }
 
-  getAllEstados(): void {
+  getAllEvidencias(): void {
     this.service.getAll().subscribe({
       next: (data) => {
-        this.estados = data;
-        console.log('Datos cargados:', this.estados);
+        this.evidencias = data;
+        console.log('Datos cargados:', this.evidencias);
       },
       error: (e) => {
-        console.error('Error al cargar los estados de evidencia', e);
+        console.error('Error al cargar los tipos de evidencia', e);
         this.snackBar.open(
-          'Error al cargar la lista de estados de evidencia.',
+          'Error al cargar la lista de tipos de evidencia.',
           'Cerrar',
           { duration: 3000 }
         );
@@ -63,32 +64,32 @@ export class TipoEstadoEvidenciaListComponent implements OnInit {
     });
   }
 
-  deleteEstado(id: number | undefined): void {
+  deleteEvidencia(id: number | undefined): void {
     if (id === undefined) {
-      this.snackBar.open('ID de estado no válido.', 'Cerrar', {
+      this.snackBar.open('ID de evidencia no válido.', 'Cerrar', {
         duration: 3000,
       });
       return;
     }
 
     if (
-      confirm('¿Estás seguro de que quieres eliminar este estado de evidencia?')
+      confirm('¿Estás seguro de que quieres eliminar este tipo de evidencia?')
     ) {
       this.service.delete(id).subscribe({
         next: () => {
           this.snackBar.open(
-            'Estado de evidencia eliminado exitosamente',
+            'Tipo de evidencia eliminado exitosamente',
             'Cerrar',
             {
               duration: 3000,
             }
           );
-          this.getAllEstados();
+          this.getAllEvidencias();
         },
         error: (e) => {
-          console.error('Error al eliminar el estado de evidencia', e);
+          console.error('Error al eliminar el tipo de evidencia', e);
           this.snackBar.open(
-            'Error al eliminar el estado de evidencia.',
+            'Error al eliminar el tipo de evidencia.',
             'Cerrar',
             {
               duration: 3000,
@@ -99,15 +100,15 @@ export class TipoEstadoEvidenciaListComponent implements OnInit {
     }
   }
 
-  addEstado(): void {
-    this.router.navigate(['/catalogos/tipos-estado-evidencia/new']);
+  addEvidencia(): void {
+    this.router.navigate(['/catalogos/tipos-evidencia/new']);
   }
 
-  editEstado(id: number | undefined): void {
+  editEvidencia(id: number | undefined): void {
     if (id !== undefined) {
-      this.router.navigate(['/catalogos/tipos-estado-evidencia/edit', id]);
+      this.router.navigate(['/catalogos/tipos-evidencia/edit', id]);
     } else {
-      this.snackBar.open('ID de estado no válido para editar.', 'Cerrar', {
+      this.snackBar.open('ID de evidencia no válido para editar.', 'Cerrar', {
         duration: 3000,
       });
     }

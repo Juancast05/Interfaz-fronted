@@ -11,6 +11,12 @@ import { TipoClaseVehiculoListComponent } from './catalogos/tipo-clase-vehiculo/
 import { TipoClaseVehiculoFormComponent } from './catalogos/tipo-clase-vehiculo/tipo-clase-vehiculo-form.component';
 import { TipoEstadoEvidenciaListComponent } from './catalogos/tipo-estado-evidencia/tipo-estado-evidencia-list.component';
 import { TipoEstadoEvidenciaFormComponent } from './catalogos/tipo-estado-evidencia/tipo-estado-evidencia-form.component';
+import { TipoEstadoReenvioFormComponent } from './catalogos/tipo-estado-reenvio/tipo-estado-reenvio-form.component';
+import { TipoEstadoReenvioListComponent } from './catalogos/tipo-estado-reenvio/tipo-estado-reenvio-list.component';
+import { TipoEstadoSolicitudFormComponent } from './catalogos/tipo-estado-solicitud/tipo-estado-solicitud-form.component';
+import { TipoEstadoSolicitudListComponent } from './catalogos/tipo-estado-solicitud/tipo-estado-solicitud-list.component';
+import { TipoEvidenciaListComponent } from './catalogos/tipo-evidencia/tipo-evidencia-list.component';
+import { TipoEvidenciaFormComponent } from './catalogos/tipo-evidencia/tipo-evidencia-form.component';
 
 export const routes: Routes = [
   { path: '', component: DashboardComponent },
@@ -60,6 +66,42 @@ export const routes: Routes = [
       {
         path: 'tipos-estado-evidencia/edit/:id',
         component: TipoEstadoEvidenciaFormComponent,
+      },
+      {
+        path: 'tipos-estado-reenvio',
+        component: TipoEstadoReenvioListComponent,
+      },
+      {
+        path: 'tipos-estado-reenvio/new',
+        component: TipoEstadoReenvioFormComponent,
+      },
+      {
+        path: 'tipos-estado-reenvio/edit/:id',
+        component: TipoEstadoReenvioFormComponent,
+      },
+      {
+        path: 'tipos-estado-solicitud',
+        component: TipoEstadoSolicitudListComponent,
+      },
+      {
+        path: 'tipos-estado-solicitud/new',
+        component: TipoEstadoSolicitudFormComponent,
+      },
+      {
+        path: 'tipos-estado-solicitud/edit/:id',
+        component: TipoEstadoSolicitudFormComponent,
+      },
+      {
+        path: 'tipos-evidencia',
+        component: TipoEvidenciaListComponent,
+      },
+      {
+        path: 'tipos-evidencia/new',
+        component: TipoEvidenciaFormComponent,
+      },
+      {
+        path: 'tipos-evidencia/edit/:id',
+        component: TipoEvidenciaFormComponent,
       },
     ],
   },

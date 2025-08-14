@@ -1,9 +1,9 @@
 <div class="container">
-  <mat-card class="tipo-estado-evidencia-list-card">
+  <mat-card class="tipo-estado-reenvio-list-card">
     <mat-card-header>
       <h2 class="form-title">
-        <mat-icon>checklist</mat-icon>
-        Lista de Tipos de Estado de Evidencia
+        <mat-icon>sync</mat-icon>
+        Lista de Tipos de Estado de Reenvío
       </h2>
     </mat-card-header>
     <mat-card-content>
@@ -20,32 +20,36 @@
         <table
           mat-table
           [dataSource]="estados"
-          class="mat-elevation-z8 tipo-estado-evidencia-material-table"
+          class="mat-elevation-z8 tipo-estado-reenvio-material-table"
         >
-          <ng-container matColumnDef="id_tipo_estado_evidencia">
+          <!-- Columna de ID -->
+          <ng-container matColumnDef="id_tipo_estado_reenvio">
             <th mat-header-cell *matHeaderCellDef>ID</th>
             <td mat-cell *matCellDef="let element">
-              {{ element.idTipoEstadoEvidencia }}
+              {{ element.idEstadoReenvio }}
             </td>
           </ng-container>
 
+          <!-- Columna de Nombre -->
           <ng-container matColumnDef="nombre">
             <th mat-header-cell *matHeaderCellDef>Nombre</th>
             <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
           </ng-container>
 
+          <!-- Columna de Activo -->
           <ng-container matColumnDef="activo">
             <th mat-header-cell *matHeaderCellDef>Activo</th>
             <td mat-cell *matCellDef="let element">{{ element.activo }}</td>
           </ng-container>
 
+          <!-- Columna de Acciones -->
           <ng-container matColumnDef="acciones">
             <th mat-header-cell *matHeaderCellDef>Acciones</th>
             <td mat-cell *matCellDef="let element">
               <button
                 mat-icon-button
                 color="accent"
-                (click)="editEstado(element.idTipoEstadoEvidencia)"
+                (click)="editEstado(element.idEstadoReenvio)"
                 title="Editar"
               >
                 <mat-icon>edit</mat-icon>
@@ -53,7 +57,7 @@
               <button
                 mat-icon-button
                 color="warn"
-                (click)="deleteEstado(element.idTipoEstadoEvidencia)"
+                (click)="deleteEstado(element.idTipoEstadoReenvio)"
                 title="Eliminar"
               >
                 <mat-icon>delete</mat-icon>
@@ -66,7 +70,7 @@
         </table>
       </div>
       <ng-template #noEstados>
-        <p class="no-data">No hay tipos de estado de evidencia registrados.</p>
+        <p class="no-data">No hay tipos de estado de reenvío registrados.</p>
       </ng-template>
     </mat-card-content>
   </mat-card>

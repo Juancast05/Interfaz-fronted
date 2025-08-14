@@ -1,4 +1,4 @@
-/* Archivo: tipo-estado-evidencia-form.component.css */
+/* Archivo: tipo-evidencia-form.component.css */
 /* Estilos basados en tipo-calendario-pyp-form.component.css */
 
 /* Importa una fuente más "corporativa" si no usas Roboto por defecto */
@@ -10,7 +10,7 @@ body {
 }
 
 /* Estilos específicos del componente */
-.tipo-estado-evidencia-form-card {
+.tipo-evidencia-form-card {
   max-width: 800px;
   margin: 20px auto;
   padding: 20px;
