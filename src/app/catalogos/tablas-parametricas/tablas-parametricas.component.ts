@@ -49,5 +49,25 @@ export class TablasParametricasComponent {
       descripcion: 'Administra los tipo de evidencia.',
       ruta: 'tipos-evidencia',
     },
+    {
+      titulo: 'Tipos de Evidencia Infracción',
+      descripcion: 'Administra los tipo de evidencia infracción.',
+      ruta: 'tipos-evidencia-infraccion',
+    },
+    {
+      titulo: 'Tipos de Exento',
+      descripcion: 'Administra los tipo de exento.',
+      ruta: 'tipos-exento',
+    },
+    {
+      titulo: 'Tipos de Jornada Pyp',
+      descripcion: 'Administra los tipos de jornadas Pyp.',
+      ruta: 'tipos-jornada-pyp',
+    },
+    {
+      titulo: 'Tipos de Motivo Exento',
+      descripcion: 'Administra los tipos de motivos exentos.',
+      ruta: 'tipos-motivo-exento',
+    },
   ];
 }

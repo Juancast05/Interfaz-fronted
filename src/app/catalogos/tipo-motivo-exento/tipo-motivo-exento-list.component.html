@@ -1,0 +1,95 @@
+<div class="container">
+  <mat-card class="tipo-motivo-exento-list-card">
+    <mat-card-header>
+      <h2 class="form-title">
+        <mat-icon>block_flipped</mat-icon>
+        Lista de Tipos de Motivo Exento
+      </h2>
+    </mat-card-header>
+    <mat-card-content>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="addMotivo()"
+        class="add-new-button"
+      >
+        <mat-icon>add</mat-icon> Nuevo Tipo
+      </button>
+
+      <div *ngIf="motivosExento.length > 0; else noMotivos">
+        <table
+          mat-table
+          [dataSource]="motivosExento"
+          class="mat-elevation-z8 tipo-motivo-exento-material-table"
+        >
+          <!-- Columna de ID -->
+          <ng-container matColumnDef="idTipoMotivoExento">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.idTipoMotivoExento }}
+            </td>
+          </ng-container>
+
+          <!-- Columna de ID Cliente Sistema -->
+          <ng-container matColumnDef="idClienteSistema">
+            <th mat-header-cell *matHeaderCellDef>ID Cliente</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.idClienteSistema }}
+            </td>
+          </ng-container>
+
+          <!-- Columna de Código Motivo -->
+          <ng-container matColumnDef="codigoMotivo">
+            <th mat-header-cell *matHeaderCellDef>Código</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.codigoMotivo }}
+            </td>
+          </ng-container>
+
+          <!-- Columna de Nombre Motivo -->
+          <ng-container matColumnDef="nombreMotivo">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.nombreMotivo }}
+            </td>
+          </ng-container>
+
+          <!-- Columna de Activo -->
+          <ng-container matColumnDef="activo">
+            <th mat-header-cell *matHeaderCellDef>Activo</th>
+            <td mat-cell *matCellDef="let element">{{ element.activo }}</td>
+          </ng-container>
+
+          <!-- Columna de Acciones -->
+          <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let element">
+              <button
+                mat-icon-button
+                color="accent"
+                (click)="editMotivo(element.idTipoMotivoExento)"
+                title="Editar"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                mat-icon-button
+                color="warn"
+                (click)="deleteMotivo(element.idTipoMotivoExento)"
+                title="Eliminar"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+      <ng-template #noMotivos>
+        <p class="no-data">No hay motivos exento registrados.</p>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
+</div>

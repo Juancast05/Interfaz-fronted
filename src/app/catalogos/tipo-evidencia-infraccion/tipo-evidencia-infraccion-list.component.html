@@ -1,0 +1,93 @@
+<div class="container">
+  <mat-card class="tipo-evidencia-infraccion-list-card">
+    <mat-card-header>
+      <h2 class="form-title">
+        <mat-icon>gavel</mat-icon>
+        Lista de Tipos de Evidencia de Infracción
+      </h2>
+    </mat-card-header>
+    <mat-card-content>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="addEvidenciaInfraccion()"
+        class="add-new-button"
+      >
+        <mat-icon>add</mat-icon> Nuevo Tipo
+      </button>
+
+      <div *ngIf="evidenciasInfraccion.length > 0; else noEvidenciasInfraccion">
+        <table
+          mat-table
+          [dataSource]="evidenciasInfraccion"
+          class="mat-elevation-z8 tipo-evidencia-infraccion-material-table"
+        >
+          <!-- Columna de ID -->
+          <ng-container matColumnDef="id_tipo_evidencia_infraccion">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.idTipoEvidenciaInfraccion }}
+            </td>
+          </ng-container>
+
+          <!-- Columna de ID Tipo Código Infracción -->
+          <ng-container matColumnDef="id_tipo_codigo_infraccion">
+            <th mat-header-cell *matHeaderCellDef>ID Cód. Infracción</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.idTipoCodigoInfraccion }}
+            </td>
+          </ng-container>
+
+          <!-- Columna de ID Tipo Evidencia -->
+          <ng-container matColumnDef="id_tipo_evidencia">
+            <th mat-header-cell *matHeaderCellDef>ID Evidencia</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.idTipoEvidencia }}
+            </td>
+          </ng-container>
+
+          <!-- Columna de Activo -->
+          <ng-container matColumnDef="activo">
+            <th mat-header-cell *matHeaderCellDef>Activo</th>
+            <td mat-cell *matCellDef="let element">{{ element.activo }}</td>
+          </ng-container>
+
+          <!-- Columna de Acciones -->
+          <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let element">
+              <button
+                mat-icon-button
+                color="accent"
+                (click)="
+                  editEvidenciaInfraccion(element.idTipoEvidenciaInfraccion)
+                "
+                title="Editar"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                mat-icon-button
+                color="warn"
+                (click)="
+                  deleteEvidenciaInfraccion(element.idTipoEvidenciaInfraccion)
+                "
+                title="Eliminar"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+      <ng-template #noEvidenciasInfraccion>
+        <p class="no-data">
+          No hay tipos de evidencia de infracción registrados.
+        </p>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,140 @@
+<div class="container">
+  <mat-card class="tipo-evidencia-infraccion-form-card">
+    <h2 class="form-title">
+      <mat-icon>{{ isEditMode ? "edit" : "note_add" }}</mat-icon>
+      {{
+        isEditMode
+          ? "Editar Tipo de Evidencia de Infracción"
+          : "Nuevo Tipo de Evidencia de Infracción"
+      }}
+    </h2>
+
+    <form [formGroup]="tipoEvidenciaInfraccionForm" (ngSubmit)="onSubmit()">
+      <!-- Panel de expansión para Información General -->
+      <mat-expansion-panel [expanded]="true" class="form-section-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>info</mat-icon>
+            Información de la Infracción
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>ID Código Infracción</mat-label>
+            <input
+              matInput
+              formControlName="idTipoCodigoInfraccion"
+              type="number"
+              required
+            />
+            <mat-error
+              *ngIf="
+                tipoEvidenciaInfraccionForm
+                  .get('idTipoCodigoInfraccion')
+                  ?.hasError('required') &&
+                tipoEvidenciaInfraccionForm.get('idTipoCodigoInfraccion')
+                  ?.touched
+              "
+            >
+              El ID del código de infracción es obligatorio.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>ID Tipo Evidencia</mat-label>
+            <input
+              matInput
+              formControlName="idTipoEvidencia"
+              type="number"
+              required
+            />
+            <mat-error
+              *ngIf="
+                tipoEvidenciaInfraccionForm
+                  .get('idTipoEvidencia')
+                  ?.hasError('required') &&
+                tipoEvidenciaInfraccionForm.get('idTipoEvidencia')?.touched
+              "
+            >
+              El ID del tipo de evidencia es obligatorio.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Activo</mat-label>
+            <mat-select formControlName="activo" required>
+              <mat-option value="SI">SI</mat-option>
+              <mat-option value="NO">NO</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="
+                tipoEvidenciaInfraccionForm
+                  .get('activo')
+                  ?.hasError('required') &&
+                tipoEvidenciaInfraccionForm.get('activo')?.touched
+              "
+            >
+              El estado es obligatorio.
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+
+      <!-- Panel de expansión para Fechas, colapsado por defecto -->
+      <mat-expansion-panel class="form-section-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>date_range</mat-icon>
+            Vigencia
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Fecha de Inicio</mat-label>
+            <input
+              matInput
+              [matDatepicker]="pickerInicio"
+              formControlName="fechaInicio"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="pickerInicio"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #pickerInicio></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Fecha de Fin</mat-label>
+            <input
+              matInput
+              [matDatepicker]="pickerFin"
+              formControlName="fechaFin"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="pickerFin"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #pickerFin></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+
+      <div class="form-actions">
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="tipoEvidenciaInfraccionForm.invalid"
+        >
+          <mat-icon>{{ isEditMode ? "save" : "add_circle" }}</mat-icon>
+          {{ isEditMode ? "Actualizar" : "Guardar" }}
+        </button>
+        <button mat-raised-button color="warn" type="button" (click)="cancel()">
+          <mat-icon>cancel</mat-icon>
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

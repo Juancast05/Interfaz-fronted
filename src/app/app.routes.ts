@@ -17,6 +17,14 @@ import { TipoEstadoSolicitudFormComponent } from './catalogos/tipo-estado-solici
 import { TipoEstadoSolicitudListComponent } from './catalogos/tipo-estado-solicitud/tipo-estado-solicitud-list.component';
 import { TipoEvidenciaListComponent } from './catalogos/tipo-evidencia/tipo-evidencia-list.component';
 import { TipoEvidenciaFormComponent } from './catalogos/tipo-evidencia/tipo-evidencia-form.component';
+import { TipoEvidenciaInfraccionListComponent } from './catalogos/tipo-evidencia-infraccion/tipo-evidencia-infraccion-list.component';
+import { TipoEvidenciaInfraccionFormComponent } from './catalogos/tipo-evidencia-infraccion/tipo-evidencia-infraccion-form.component';
+import { TipoExentoListComponent } from './catalogos/tipo-exento/tipo-exento-list.component';
+import { TipoExentoFormComponent } from './catalogos/tipo-exento/tipo-exento-form.component';
+import { TipoJornadaPypListComponent } from './catalogos/tipo-jornada-pyp/tipo-jornada-pyp-list.component';
+import { TipoJornadaPypFormComponent } from './catalogos/tipo-jornada-pyp/tipo-jornada-pyp-form.component';
+import { TipoMotivoExentoListComponent } from './catalogos/tipo-motivo-exento/tipo-motivo-exento-list.component';
+import { TipoMotivoExentoFormComponent } from './catalogos/tipo-motivo-exento/tipo-motivo-exento-form.component';
 
 export const routes: Routes = [
   { path: '', component: DashboardComponent },
@@ -102,6 +110,54 @@ export const routes: Routes = [
       {
         path: 'tipos-evidencia/edit/:id',
         component: TipoEvidenciaFormComponent,
+      },
+      {
+        path: 'tipos-evidencia-infraccion',
+        component: TipoEvidenciaInfraccionListComponent,
+      },
+      {
+        path: 'tipos-evidencia-infraccion/new',
+        component: TipoEvidenciaInfraccionFormComponent,
+      },
+      {
+        path: 'tipos-evidencia-infraccion/edit/:id',
+        component: TipoEvidenciaInfraccionFormComponent,
+      },
+      {
+        path: 'tipos-exento',
+        component: TipoExentoListComponent,
+      },
+      {
+        path: 'tipos-exento/new',
+        component: TipoExentoFormComponent,
+      },
+      {
+        path: 'tipos-exento/edit/:id',
+        component: TipoExentoFormComponent,
+      },
+      {
+        path: 'tipos-jornada-pyp',
+        component: TipoJornadaPypListComponent,
+      },
+      {
+        path: 'tipos-jornada-pyp/new',
+        component: TipoJornadaPypFormComponent,
+      },
+      {
+        path: 'tipos-jornada-pyp/edit/:id',
+        component: TipoJornadaPypFormComponent,
+      },
+      {
+        path: 'tipos-motivo-exento',
+        component: TipoMotivoExentoListComponent,
+      },
+      {
+        path: 'tipos-motivo-exento/new',
+        component: TipoMotivoExentoFormComponent,
+      },
+      {
+        path: 'tipos-motivo-exento/edit/:id',
+        component: TipoMotivoExentoFormComponent,
       },
     ],
   },
