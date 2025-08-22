@@ -1,0 +1,171 @@
+<div class="container">
+  <mat-card class="tipo-caracter-puntaje-form-card">
+    <h2 class="form-title">
+      <mat-icon>{{ isEditMode ? "edit" : "note_add" }}</mat-icon>
+      {{
+        isEditMode ? "Editar Puntaje de Carácter" : "Nuevo Puntaje de Carácter"
+      }}
+    </h2>
+
+    <form [formGroup]="tipoCaracterPuntajeForm" (ngSubmit)="onSubmit()">
+      <mat-expansion-panel [expanded]="true" class="form-section-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>info</mat-icon>
+            Información General
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Carácter</mat-label>
+            <input matInput formControlName="caracter" required />
+            <mat-error
+              *ngIf="
+                tipoCaracterPuntajeForm.get('caracter')?.hasError('required') &&
+                tipoCaracterPuntajeForm.get('caracter')?.touched
+              "
+            >
+              El carácter es obligatorio.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Versión de Score</mat-label>
+            <input matInput formControlName="versionScore" required />
+            <mat-error
+              *ngIf="
+                tipoCaracterPuntajeForm
+                  .get('versionScore')
+                  ?.hasError('required') &&
+                tipoCaracterPuntajeForm.get('versionScore')?.touched
+              "
+            >
+              La versión de score es obligatoria.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Activo</mat-label>
+            <mat-select formControlName="activo" required>
+              <mat-option value="S">SI</mat-option>
+              <mat-option value="N">NO</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="
+                tipoCaracterPuntajeForm.get('activo')?.hasError('required') &&
+                tipoCaracterPuntajeForm.get('activo')?.touched
+              "
+            >
+              El estado es obligatorio.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>ID Tipo de Sistema</mat-label>
+            <input matInput type="number" formControlName="idTipoSistema" />
+          </mat-form-field>
+        </div>
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>ID Cliente de Sistema</mat-label>
+            <input matInput type="number" formControlName="idClienteSistema" />
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>ID Tipo de Vehículo</mat-label>
+            <input matInput type="number" formControlName="idTipoVehiculo" />
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel class="form-section-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>trending_up</mat-icon>
+            Valores de Puntaje
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Coeficiente Dispositivo</mat-label>
+            <input
+              matInput
+              type="number"
+              formControlName="coeficienteDispositivo"
+            />
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Eficiencia Dispositivo</mat-label>
+            <input
+              matInput
+              type="number"
+              formControlName="eficienciaDispositivo"
+            />
+          </mat-form-field>
+        </div>
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Coeficiente Sistema</mat-label>
+            <input
+              matInput
+              type="number"
+              formControlName="coeficienteSistema"
+            />
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Eficiencia Sistema</mat-label>
+            <input matInput type="number" formControlName="eficienciaSistema" />
+          </mat-form-field>
+        </div>
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Coeficiente QALPR</mat-label>
+            <input matInput type="number" formControlName="coeficienteQalpr" />
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Eficiencia QALPR</mat-label>
+            <input matInput type="number" formControlName="eficienciaQalpr" />
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel class="form-section-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>date_range</mat-icon>
+            Fechas
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Fecha de Registro</mat-label>
+            <input
+              matInput
+              [matDatepicker]="pickerRegistro"
+              formControlName="fechaRegistro"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="pickerRegistro"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #pickerRegistro></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+
+      <div class="form-actions">
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="tipoCaracterPuntajeForm.invalid"
+        >
+          <mat-icon>{{ isEditMode ? "save" : "add_circle" }}</mat-icon>
+          {{ isEditMode ? "Actualizar" : "Guardar" }}
+        </button>
+        <button mat-raised-button color="warn" type="button" (click)="cancel()">
+          <mat-icon>cancel</mat-icon>
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

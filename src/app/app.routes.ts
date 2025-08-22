@@ -25,6 +25,20 @@ import { TipoJornadaPypListComponent } from './catalogos/tipo-jornada-pyp/tipo-j
 import { TipoJornadaPypFormComponent } from './catalogos/tipo-jornada-pyp/tipo-jornada-pyp-form.component';
 import { TipoMotivoExentoListComponent } from './catalogos/tipo-motivo-exento/tipo-motivo-exento-list.component';
 import { TipoMotivoExentoFormComponent } from './catalogos/tipo-motivo-exento/tipo-motivo-exento-form.component';
+import { TipoMotivoPypListComponent } from './catalogos/tipo-motivo-pyp/tipo-motivo-pyp-list.component';
+import { TipoMotivoPypFormComponent } from './catalogos/tipo-motivo-pyp/tipo-motivo-pyp-form.component';
+import { TipoMotivoReenvioFormComponent } from './catalogos/tipo-motivo-reenvio/tipo-motivo-reenvio-form.component';
+import { TipoMotivoReenvioListComponent } from './catalogos/tipo-motivo-reenvio/tipo-motivo-reenvio-list.component';
+import { TipoPosicionPypListComponent } from './catalogos/tipo-posicion-pyp/tipo-posicion-pyp-list.component';
+import { TipoPosicionPypFormComponent } from './catalogos/tipo-posicion-pyp/tipo-posicion-pyp-form.component';
+import { TipoProcesoValidacionListComponent } from './catalogos/tipo-proceso-validacion/tipo-proceso-validacion-list.component';
+import { TipoProcesoValidacionFormComponent } from './catalogos/tipo-proceso-validacion/tipo-proceso-validacion-form.component';
+import { TipoServicioListComponent } from './catalogos/tipo-servicio/tipo-servicio-list.component';
+import { TipoServicioFormComponent } from './catalogos/tipo-servicio/tipo-servicio-form.component';
+import { TipoCamaraListComponent } from './catalogos/tipo-camara/tipo-camara-list.component';
+import { TipoCamaraFormComponent } from './catalogos/tipo-camara/tipo-camara-form.component';
+import { TipoCaracterPuntajeListComponent } from './catalogos/tipo-caracter-puntaje/tipo-caracter-puntaje-list.component';
+import { TipoCaracterPuntajeFormComponent } from './catalogos/tipo-caracter-puntaje/tipo-caracter-puntaje-form.component';
 
 export const routes: Routes = [
   { path: '', component: DashboardComponent },
@@ -158,6 +172,90 @@ export const routes: Routes = [
       {
         path: 'tipos-motivo-exento/edit/:id',
         component: TipoMotivoExentoFormComponent,
+      },
+      {
+        path: 'tipos-motivo-pyp',
+        component: TipoMotivoPypListComponent,
+      },
+      {
+        path: 'tipos-motivo-pyp/new',
+        component: TipoMotivoPypFormComponent,
+      },
+      {
+        path: 'tipos-motivo-pyp/edit/:id',
+        component: TipoMotivoPypFormComponent,
+      },
+      {
+        path: 'tipos-motivo-reenvio',
+        component: TipoMotivoReenvioListComponent,
+      },
+      {
+        path: 'tipos-motivo-reenvio/new',
+        component: TipoMotivoReenvioFormComponent,
+      },
+      {
+        path: 'tipos-motivo-reenvio/edit/:id',
+        component: TipoMotivoReenvioFormComponent,
+      },
+      {
+        path: 'tipos-posicion-pyp',
+        component: TipoPosicionPypListComponent,
+      },
+      {
+        path: 'tipos-posicion-pyp/new',
+        component: TipoPosicionPypFormComponent,
+      },
+      {
+        path: 'tipos-posicion-pyp/edit/:id',
+        component: TipoPosicionPypFormComponent,
+      },
+      {
+        path: 'tipos-proceso-validacion',
+        component: TipoProcesoValidacionListComponent,
+      },
+      {
+        path: 'tipos-proceso-validacion/new',
+        component: TipoProcesoValidacionFormComponent,
+      },
+      {
+        path: 'tipos-proceso-validacion/edit/:id',
+        component: TipoProcesoValidacionFormComponent,
+      },
+      {
+        path: 'tipos-servicio',
+        component: TipoServicioListComponent,
+      },
+      {
+        path: 'tipos-servicio/new',
+        component: TipoServicioFormComponent,
+      },
+      {
+        path: 'tipos-servicio/edit/:id',
+        component: TipoServicioFormComponent,
+      },
+      {
+        path: 'tipos-camara',
+        component: TipoCamaraListComponent,
+      },
+      {
+        path: 'tipos-camara/new',
+        component: TipoCamaraFormComponent,
+      },
+      {
+        path: 'tipos-camara/edit/:id',
+        component: TipoCamaraFormComponent,
+      },
+      {
+        path: 'tipos-caracter-puntaje',
+        component: TipoCaracterPuntajeListComponent,
+      },
+      {
+        path: 'tipos-caracter-puntaje/new',
+        component: TipoCaracterPuntajeFormComponent,
+      },
+      {
+        path: 'tipos-caracter-puntaje/edit/:id',
+        component: TipoCaracterPuntajeFormComponent,
       },
     ],
   },

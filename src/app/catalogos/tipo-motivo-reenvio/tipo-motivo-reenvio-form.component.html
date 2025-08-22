@@ -1,0 +1,111 @@
+<div class="container">
+  <mat-card class="tipo-motivo-reenvio-form-card">
+    <h2 class="form-title">
+      <mat-icon>{{ isEditMode ? "edit" : "note_add" }}</mat-icon>
+      {{
+        isEditMode
+          ? "Editar Tipo de Motivo de Reenvío"
+          : "Nuevo Tipo de Motivo de Reenvío"
+      }}
+    </h2>
+
+    <form [formGroup]="tipoMotivoReenvioForm" (ngSubmit)="onSubmit()">
+      <!-- Panel de expansión para Información General -->
+      <mat-expansion-panel [expanded]="true" class="form-section-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>info</mat-icon>
+            Información General
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Nombre del Motivo</mat-label>
+            <input matInput formControlName="nombreMotivo" required />
+            <mat-error
+              *ngIf="
+                tipoMotivoReenvioForm
+                  .get('nombreMotivo')
+                  ?.hasError('required') &&
+                tipoMotivoReenvioForm.get('nombreMotivo')?.touched
+              "
+            >
+              El nombre del motivo es obligatorio.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Activo</mat-label>
+            <mat-select formControlName="activo" required>
+              <mat-option value="SI">SI</mat-option>
+              <mat-option value="NO">NO</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="
+                tipoMotivoReenvioForm.get('activo')?.hasError('required') &&
+                tipoMotivoReenvioForm.get('activo')?.touched
+              "
+            >
+              El estado es obligatorio.
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+
+      <!-- Panel de expansión para Fechas, colapsado por defecto -->
+      <mat-expansion-panel class="form-section-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>date_range</mat-icon>
+            Fechas
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Fecha de Registro</mat-label>
+            <input
+              matInput
+              [matDatepicker]="pickerRegistro"
+              formControlName="fechaRegistro"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="pickerRegistro"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #pickerRegistro></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Fecha de Inactivación</mat-label>
+            <input
+              matInput
+              [matDatepicker]="pickerInactiva"
+              formControlName="fechaInactiva"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="pickerInactiva"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #pickerInactiva></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+
+      <div class="form-actions">
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="tipoMotivoReenvioForm.invalid"
+        >
+          <mat-icon>{{ isEditMode ? "save" : "add_circle" }}</mat-icon>
+          {{ isEditMode ? "Actualizar" : "Guardar" }}
+        </button>
+        <button mat-raised-button color="warn" type="button" (click)="cancel()">
+          <mat-icon>cancel</mat-icon>
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

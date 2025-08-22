@@ -1,0 +1,95 @@
+<div class="container">
+  <mat-card class="tipo-servicio-list-card">
+    <mat-card-header>
+      <h2 class="form-title">
+        <mat-icon>list_alt</mat-icon>
+        Lista de Tipos de Servicio
+      </h2>
+    </mat-card-header>
+    <mat-card-content>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="addTipoServicio()"
+        class="add-new-button"
+      >
+        <mat-icon>add</mat-icon> Nuevo Tipo de Servicio
+      </button>
+
+      <div *ngIf="tiposServicio.length > 0; else noTiposServicio">
+        <table
+          mat-table
+          [dataSource]="tiposServicio"
+          class="mat-elevation-z8 tipo-servicio-material-table"
+        >
+          <!-- Columna de ID -->
+          <ng-container matColumnDef="idTipoServicio">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.idTipoServicio }}
+            </td>
+          </ng-container>
+
+          <!-- Columna de ID Cliente Sistema -->
+          <ng-container matColumnDef="idClienteSistema">
+            <th mat-header-cell *matHeaderCellDef>ID Cliente</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.idClienteSistema }}
+            </td>
+          </ng-container>
+
+          <!-- Columna de Nombre -->
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.nombre }}
+            </td>
+          </ng-container>
+
+          <!-- Columna de Código Servicio -->
+          <ng-container matColumnDef="codigoServicio">
+            <th mat-header-cell *matHeaderCellDef>Código de Servicio</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.codigoServicio }}
+            </td>
+          </ng-container>
+
+          <!-- Columna de Activo -->
+          <ng-container matColumnDef="activo">
+            <th mat-header-cell *matHeaderCellDef>Activo</th>
+            <td mat-cell *matCellDef="let element">{{ element.activo }}</td>
+          </ng-container>
+
+          <!-- Columna de Acciones -->
+          <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let element">
+              <button
+                mat-icon-button
+                color="accent"
+                (click)="editTipoServicio(element.idTipoServicio)"
+                title="Editar"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                mat-icon-button
+                color="warn"
+                (click)="deleteTipoServicio(element.idTipoServicio)"
+                title="Eliminar"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+      <ng-template #noTiposServicio>
+        <p class="no-data">No hay tipos de servicio registrados.</p>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
+</div>

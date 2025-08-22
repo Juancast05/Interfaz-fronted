@@ -1,8 +1,5 @@
 export interface TipoCarril {
   idTipoCarril?: number;
-  nombre: string;
-  descripcion: string;
-  fechaRegistra?: Date;
-  fechaInactiva?: Date;
+  nombre_carril: string;
   activo: string;
 }

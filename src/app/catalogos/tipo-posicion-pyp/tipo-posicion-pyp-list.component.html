@@ -1,0 +1,95 @@
+<div class="container">
+  <mat-card class="tipo-posicion-pyp-list-card">
+    <mat-card-header>
+      <h2 class="form-title">
+        <mat-icon>pin_drop</mat-icon>
+        Lista de Tipos de Posición PYP
+      </h2>
+    </mat-card-header>
+    <mat-card-content>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="addPosicion()"
+        class="add-new-button"
+      >
+        <mat-icon>add</mat-icon> Nueva Posición
+      </button>
+
+      <div *ngIf="posicionesPyp.length > 0; else noPosiciones">
+        <table
+          mat-table
+          [dataSource]="posicionesPyp"
+          class="mat-elevation-z8 tipo-posicion-pyp-material-table"
+        >
+          <!-- Columna de ID -->
+          <ng-container matColumnDef="idTipoPosicion">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.idTipoPosicion }}
+            </td>
+          </ng-container>
+
+          <!-- Columna de ID Cliente Sistema -->
+          <ng-container matColumnDef="idClienteSistema">
+            <th mat-header-cell *matHeaderCellDef>ID Cliente</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.idClienteSistema }}
+            </td>
+          </ng-container>
+
+          <!-- Columna de ID Tipo Formato Placa -->
+          <ng-container matColumnDef="idTipoFormatoPlaca">
+            <th mat-header-cell *matHeaderCellDef>ID Formato Placa</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.idTipoFormatoPlaca }}
+            </td>
+          </ng-container>
+
+          <!-- Columna de Posicion Pyp -->
+          <ng-container matColumnDef="posicionPyp">
+            <th mat-header-cell *matHeaderCellDef>Posición PYP</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.posicionPyp }}
+            </td>
+          </ng-container>
+
+          <!-- Columna de Activo -->
+          <ng-container matColumnDef="activo">
+            <th mat-header-cell *matHeaderCellDef>Activo</th>
+            <td mat-cell *matCellDef="let element">{{ element.activo }}</td>
+          </ng-container>
+
+          <!-- Columna de Acciones -->
+          <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let element">
+              <button
+                mat-icon-button
+                color="accent"
+                (click)="editPosicion(element.idTipoPosicion)"
+                title="Editar"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                mat-icon-button
+                color="warn"
+                (click)="deletePosicion(element.idTipoPosicion)"
+                title="Eliminar"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+      <ng-template #noPosiciones>
+        <p class="no-data">No hay posiciones Pyp registradas.</p>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
+</div>

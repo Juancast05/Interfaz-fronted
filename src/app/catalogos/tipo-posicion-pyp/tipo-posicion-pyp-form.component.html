@@ -1,0 +1,150 @@
+<div class="container">
+  <mat-card class="tipo-posicion-pyp-form-card">
+    <h2 class="form-title">
+      <mat-icon>{{ isEditMode ? "edit" : "note_add" }}</mat-icon>
+      {{
+        isEditMode
+          ? "Editar Tipo de Posición PYP"
+          : "Nuevo Tipo de Posición PYP"
+      }}
+    </h2>
+
+    <form [formGroup]="tipoPosicionPypForm" (ngSubmit)="onSubmit()">
+      <!-- Panel de expansión para Información General -->
+      <mat-expansion-panel [expanded]="true" class="form-section-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>info</mat-icon>
+            Información General
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>ID Cliente Sistema</mat-label>
+            <input
+              matInput
+              formControlName="idClienteSistema"
+              type="number"
+              required
+            />
+            <mat-error
+              *ngIf="
+                tipoPosicionPypForm
+                  .get('idClienteSistema')
+                  ?.hasError('required') &&
+                tipoPosicionPypForm.get('idClienteSistema')?.touched
+              "
+            >
+              El ID del cliente es obligatorio.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>ID Tipo Formato Placa</mat-label>
+            <input
+              matInput
+              formControlName="idTipoFormatoPlaca"
+              type="number"
+              required
+            />
+            <mat-error
+              *ngIf="
+                tipoPosicionPypForm
+                  .get('idTipoFormatoPlaca')
+                  ?.hasError('required') &&
+                tipoPosicionPypForm.get('idTipoFormatoPlaca')?.touched
+              "
+            >
+              El ID de formato de placa es obligatorio.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Posición PYP</mat-label>
+            <input matInput formControlName="posicionPyp" required />
+            <mat-error
+              *ngIf="
+                tipoPosicionPypForm.get('posicionPyp')?.hasError('required') &&
+                tipoPosicionPypForm.get('posicionPyp')?.touched
+              "
+            >
+              La posición PYP es obligatoria.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Activo</mat-label>
+            <mat-select formControlName="activo" required>
+              <mat-option value="SI">SI</mat-option>
+              <mat-option value="NO">NO</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="
+                tipoPosicionPypForm.get('activo')?.hasError('required') &&
+                tipoPosicionPypForm.get('activo')?.touched
+              "
+            >
+              El estado es obligatorio.
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+
+      <!-- Panel de expansión para Fechas, colapsado por defecto -->
+      <mat-expansion-panel class="form-section-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>date_range</mat-icon>
+            Fechas
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Fecha de Registro</mat-label>
+            <input
+              matInput
+              [matDatepicker]="pickerRegistra"
+              formControlName="fechaRegistra"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="pickerRegistra"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #pickerRegistra></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Fecha de Inactivación</mat-label>
+            <input
+              matInput
+              [matDatepicker]="pickerInactiva"
+              formControlName="fechaInactiva"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="pickerInactiva"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #pickerInactiva></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+
+      <div class="form-actions">
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="tipoPosicionPypForm.invalid"
+        >
+          <mat-icon>{{ isEditMode ? "save" : "add_circle" }}</mat-icon>
+          {{ isEditMode ? "Actualizar" : "Guardar" }}
+        </button>
+        <button mat-raised-button color="warn" type="button" (click)="cancel()">
+          <mat-icon>cancel</mat-icon>
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

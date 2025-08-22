@@ -60,20 +60,6 @@ export class ClienteListComponent implements OnInit {
     this.router.navigate(['/clientes/edit', id_cliente_sistema]);
   }
 
-  deleteCliente(id_cliente_sistema: number): void {
-    if (confirm('¿Estás seguro de que quieres eliminar este cliente?')) {
-      this.clienteService.deleteCliente(id_cliente_sistema).subscribe({
-        next: () => {
-          console.log('Cliente eliminado exitosamente');
-          this.getAllClientes();
-        },
-        error: (error) => {
-          console.error('Error al eliminar cliente:', error);
-        },
-      });
-    }
-  }
-
   addCliente(): void {
     this.router.navigate(['/clientes/new']);
   }

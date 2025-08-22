@@ -1,0 +1,243 @@
+<div class="container">
+  <mat-card class="tipo-proceso-validacion-form-card">
+    <h2 class="form-title">
+      <mat-icon>{{ isEditMode ? "edit" : "note_add" }}</mat-icon>
+      {{
+        isEditMode
+          ? "Editar Tipo de Proceso de Validación"
+          : "Nuevo Tipo de Proceso de Validación"
+      }}
+    </h2>
+
+    <form [formGroup]="tipoProcesoValidacionForm" (ngSubmit)="onSubmit()">
+      <!-- Panel de expansión para Información General -->
+      <mat-expansion-panel [expanded]="true" class="form-section-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>info</mat-icon>
+            Información General
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>ID Cliente Sistema</mat-label>
+            <input
+              matInput
+              formControlName="idClienteSistema"
+              type="number"
+              required
+            />
+            <mat-error
+              *ngIf="
+                tipoProcesoValidacionForm
+                  .get('idClienteSistema')
+                  ?.hasError('required') &&
+                tipoProcesoValidacionForm.get('idClienteSistema')?.touched
+              "
+            >
+              El ID del cliente es obligatorio.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Nombre del Proceso</mat-label>
+            <input matInput formControlName="nombre" required />
+            <mat-error
+              *ngIf="
+                tipoProcesoValidacionForm.get('nombre')?.hasError('required') &&
+                tipoProcesoValidacionForm.get('nombre')?.touched
+              "
+            >
+              El nombre es obligatorio.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>ID Código Infracción</mat-label>
+            <input
+              matInput
+              formControlName="idTipoCodigoInfraccion"
+              type="number"
+              required
+            />
+            <mat-error
+              *ngIf="
+                tipoProcesoValidacionForm
+                  .get('idTipoCodigoInfraccion')
+                  ?.hasError('required') &&
+                tipoProcesoValidacionForm.get('idTipoCodigoInfraccion')?.touched
+              "
+            >
+              El ID de código de infracción es obligatorio.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Activo</mat-label>
+            <mat-select formControlName="activo" required>
+              <mat-option value="SI">SI</mat-option>
+              <mat-option value="NO">NO</mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="
+                tipoProcesoValidacionForm.get('activo')?.hasError('required') &&
+                tipoProcesoValidacionForm.get('activo')?.touched
+              "
+            >
+              El estado es obligatorio.
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+
+      <!-- Panel de expansión para Detecciones -->
+      <mat-expansion-panel class="form-section-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>search</mat-icon>
+            Detecciones
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Máximo Reporte Detecciones</mat-label>
+            <input
+              matInput
+              formControlName="maximoReporteDetecciones"
+              type="number"
+            />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Días de Reporte</mat-label>
+            <input
+              matInput
+              formControlName="diasReporteDeteccion"
+              type="number"
+            />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Días Hábiles Reporte</mat-label>
+            <mat-select formControlName="diasHabilesReporteDeteccion" required>
+              <mat-option value="SI">SI</mat-option>
+              <mat-option value="NO">NO</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+
+      <!-- Panel de expansión para Gestión y Entrega -->
+      <mat-expansion-panel class="form-section-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>local_shipping</mat-icon>
+            Gestión y Entrega
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Días de Gestión de Entrega</mat-label>
+            <input
+              matInput
+              formControlName="diasGestionEntrega"
+              type="number"
+            />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Días Hábiles Gestión de Entrega</mat-label>
+            <mat-select formControlName="diasHabilesGestionEntrega" required>
+              <mat-option value="SI">SI</mat-option>
+              <mat-option value="NO">NO</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+
+      <!-- Panel de expansión para Validaciones Adicionales -->
+      <mat-expansion-panel class="form-section-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>check_circle</mat-icon>
+            Validaciones Adicionales
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Mínimo de Imágenes</mat-label>
+            <input
+              matInput
+              formControlName="minimoImagenesReporte"
+              type="number"
+            />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Valida Exento</mat-label>
+            <mat-select formControlName="validaExento">
+              <mat-option [value]="1">SI</mat-option>
+              <mat-option [value]="0">NO</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+
+      <!-- Panel de expansión para Fechas, colapsado por defecto -->
+      <mat-expansion-panel class="form-section-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>date_range</mat-icon>
+            Fechas
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="form-row">
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Fecha de Registro</mat-label>
+            <input
+              matInput
+              [matDatepicker]="pickerRegistra"
+              formControlName="fechaRegistra"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="pickerRegistra"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #pickerRegistra></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="form-field">
+            <mat-label>Fecha de Inactivación</mat-label>
+            <input
+              matInput
+              [matDatepicker]="pickerInactiva"
+              formControlName="fechaInactiva"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="pickerInactiva"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #pickerInactiva></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+
+      <div class="form-actions">
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="tipoProcesoValidacionForm.invalid"
+        >
+          <mat-icon>{{ isEditMode ? "save" : "add_circle" }}</mat-icon>
+          {{ isEditMode ? "Actualizar" : "Guardar" }}
+        </button>
+        <button mat-raised-button color="warn" type="button" (click)="cancel()">
+          <mat-icon>cancel</mat-icon>
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </mat-card>
+</div>

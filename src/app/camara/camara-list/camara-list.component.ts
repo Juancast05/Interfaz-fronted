@@ -55,22 +55,6 @@ export class CamaraListComponent implements OnInit {
     });
   }
 
-  deleteCamara(id: number | undefined): void {
-    if (id === undefined) {
-      console.error('ID de cámara no definido para eliminar');
-      return;
-    }
-    if (confirm('¿Estás seguro de que quieres eliminar esta cámara?')) {
-      this.camaraService.deleteCamara(id).subscribe({
-        next: () => {
-          console.log(`Cámara con ID ${id} eliminada.`);
-          this.getAllCamaras(); // Refrescar la lista
-        },
-        error: (e) => console.error('Error al eliminar cámara', e),
-      });
-    }
-  }
-
   // Método para el botón "Crear Nueva Cámara"
   addCamara(): void {
     this.router.navigate(['/camaras/new']);

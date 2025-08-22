@@ -1,0 +1,89 @@
+<div class="container">
+  <mat-card class="tipo-caracter-puntaje-list-card">
+    <mat-card-header>
+      <h2 class="form-title">
+        <mat-icon>score</mat-icon>
+        Lista de Puntajes de Carácter
+      </h2>
+    </mat-card-header>
+    <mat-card-content>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="addTipoCaracterPuntaje()"
+        class="add-new-button"
+      >
+        <mat-icon>add</mat-icon> Nuevo Puntaje de Carácter
+      </button>
+
+      <div
+        *ngIf="
+          tiposCaracterPuntaje && tiposCaracterPuntaje.length > 0;
+          else noData
+        "
+      >
+        <table
+          mat-table
+          [dataSource]="tiposCaracterPuntaje"
+          class="mat-elevation-z8 tipo-caracter-puntaje-material-table"
+        >
+          <ng-container matColumnDef="idTipoCaracterPuntaje">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.idTipoCaracterPuntaje }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="caracter">
+            <th mat-header-cell *matHeaderCellDef>Caracter</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.caracter }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="versionScore">
+            <th mat-header-cell *matHeaderCellDef>Versión de Score</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.versionScore }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="activo">
+            <th mat-header-cell *matHeaderCellDef>Activo</th>
+            <td mat-cell *matCellDef="let element">{{ element.activo }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let element">
+              <button
+                mat-icon-button
+                color="accent"
+                (click)="editTipoCaracterPuntaje(element.idTipoCaracterPuntaje)"
+                title="Editar"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                mat-icon-button
+                color="warn"
+                (click)="
+                  deleteTipoCaracterPuntaje(element.idTipoCaracterPuntaje)
+                "
+                title="Eliminar"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+      <ng-template #noData>
+        <p class="no-data">No hay puntajes de caracter registrados.</p>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
+</div>

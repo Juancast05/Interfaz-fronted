@@ -1,9 +1,16 @@
 export interface TipoCaracterPuntaje {
-  idCaracterPuntaje?: number;
-  nombreCaracter: string;
-  descripcion: string;
-  valor: number;
-  fechaRegistra?: Date;
-  fechaInactiva?: Date;
+  idTipoCaracterPuntaje?: number;
+  idTipoSistema?: number;
+  idClienteSistema?: number;
+  caracter: string;
+  coeficienteDispositivo?: number;
+  eficienciaDispositivo?: number;
+  coeficienteSistema?: number;
+  eficienciaSistema?: number;
+  coeficienteQalpr?: number;
+  eficienciaQalpr?: number;
+  fechaRegistro?: string;
   activo: string;
+  idTipoVehiculo?: number;
+  versionScore?: string;
 }

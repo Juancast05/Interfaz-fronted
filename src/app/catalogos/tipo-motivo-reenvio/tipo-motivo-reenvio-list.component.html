@@ -1,0 +1,95 @@
+<div class="container">
+  <mat-card class="tipo-motivo-reenvio-list-card">
+    <mat-card-header>
+      <h2 class="form-title">
+        <mat-icon>repeat</mat-icon>
+        Lista de Tipos de Motivo de Reenvío
+      </h2>
+    </mat-card-header>
+    <mat-card-content>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="addMotivo()"
+        class="add-new-button"
+      >
+        <mat-icon>add</mat-icon> Nuevo Tipo
+      </button>
+
+      <div *ngIf="motivosReenvio.length > 0; else noMotivos">
+        <table
+          mat-table
+          [dataSource]="motivosReenvio"
+          class="mat-elevation-z8 tipo-motivo-reenvio-material-table"
+        >
+          <!-- Columna de ID -->
+          <ng-container matColumnDef="idTipoMotivoReenvio">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.idTipoMotivoReenvio }}
+            </td>
+          </ng-container>
+
+          <!-- Columna de Nombre Motivo -->
+          <ng-container matColumnDef="nombreMotivo">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.nombreMotivo }}
+            </td>
+          </ng-container>
+
+          <!-- Columna de Fecha Registro -->
+          <ng-container matColumnDef="fechaRegistro">
+            <th mat-header-cell *matHeaderCellDef>Fecha de Registro</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.fechaRegistro | date }}
+            </td>
+          </ng-container>
+
+          <!-- Columna de Fecha Inactiva -->
+          <ng-container matColumnDef="fechaInactiva">
+            <th mat-header-cell *matHeaderCellDef>Fecha de Inactividad</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.fechaInactiva | date }}
+            </td>
+          </ng-container>
+
+          <!-- Columna de Activo -->
+          <ng-container matColumnDef="activo">
+            <th mat-header-cell *matHeaderCellDef>Activo</th>
+            <td mat-cell *matCellDef="let element">{{ element.activo }}</td>
+          </ng-container>
+
+          <!-- Columna de Acciones -->
+          <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let element">
+              <button
+                mat-icon-button
+                color="accent"
+                (click)="editMotivo(element.idTipoMotivoReenvio)"
+                title="Editar"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                mat-icon-button
+                color="warn"
+                (click)="deleteMotivo(element.idTipoMotivoReenvio)"
+                title="Eliminar"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+      <ng-template #noMotivos>
+        <p class="no-data">No hay motivos de reenvío registrados.</p>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
+</div>

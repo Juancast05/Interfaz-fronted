@@ -69,5 +69,40 @@ export class TablasParametricasComponent {
       descripcion: 'Administra los tipos de motivos exentos.',
       ruta: 'tipos-motivo-exento',
     },
+    {
+      titulo: 'Tipos de Motivo Pyp',
+      descripcion: 'Administra los tipos de motivos Pyp.',
+      ruta: 'tipos-motivo-pyp',
+    },
+    {
+      titulo: 'Tipos de Motivo Reenvío',
+      descripcion: 'Administra los tipos de motivos de reenvío.',
+      ruta: 'tipos-motivo-reenvio',
+    },
+    {
+      titulo: 'Tipos de Posición Pyp',
+      descripcion: 'Administra los tipos de posiciones Pyp.',
+      ruta: 'tipos-posicion-pyp',
+    },
+    {
+      titulo: 'Tipos de Proceso de Validación',
+      descripcion: 'Administra los tipos de proceso y validaciones.',
+      ruta: 'tipos-proceso-validacion',
+    },
+    {
+      titulo: 'Tipos de Servicio',
+      descripcion: 'Administra los tipos de servicio.',
+      ruta: 'tipos-servicio',
+    },
+    {
+      titulo: 'Tipos de Camara',
+      descripcion: 'Administra los tipos de camara.',
+      ruta: 'tipos-camara',
+    },
+    {
+      titulo: 'Tipos de Caracter Puntaje',
+      descripcion: 'Administra los tipos de caracter puntaje.',
+      ruta: 'tipos-caracter-puntaje',
+    },
   ];
 }

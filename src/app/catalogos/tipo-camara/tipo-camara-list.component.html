@@ -1,0 +1,80 @@
+<div class="container">
+  <mat-card class="tipo-camara-list-card">
+    <mat-card-header>
+      <h2 class="form-title">
+        <mat-icon>videocam</mat-icon>
+        Lista de Tipos de Cámara
+      </h2>
+    </mat-card-header>
+    <mat-card-content>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="addTipoCamara()"
+        class="add-new-button"
+      >
+        <mat-icon>add</mat-icon> Nuevo Tipo de Cámara
+      </button>
+
+      <!-- Se ajusta la condición para mostrar la tabla solo si hay datos -->
+      <div *ngIf="tiposCamara && tiposCamara.length > 0; else noTiposCamara">
+        <table
+          mat-table
+          [dataSource]="tiposCamara"
+          class="mat-elevation-z8 tipo-camara-material-table"
+        >
+          <!-- Columna de ID -->
+          <ng-container matColumnDef="idTipoCamara">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.idTipoCamara }}
+            </td>
+          </ng-container>
+
+          <!-- Columna de Nombre -->
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.nombre }}
+            </td>
+          </ng-container>
+
+          <!-- Columna de Activo -->
+          <ng-container matColumnDef="activo">
+            <th mat-header-cell *matHeaderCellDef>Activo</th>
+            <td mat-cell *matCellDef="let element">{{ element.activo }}</td>
+          </ng-container>
+
+          <!-- Columna de Acciones -->
+          <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let element">
+              <button
+                mat-icon-button
+                color="accent"
+                (click)="editTipoCamara(element.idTipoCamara)"
+                title="Editar"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                mat-icon-button
+                color="warn"
+                (click)="deleteTipoCamara(element.idTipoCamara)"
+                title="Eliminar"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+      <ng-template #noTiposCamara>
+        <p class="no-data">No hay tipos de cámara registrados.</p>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
+</div>
